@@ -1,460 +1,1342 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>AHOF</title>
+<title>AHOF — Welcome to Our World</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        html {
-            scroll-behavior: smooth;
-        }
+html {
+    scroll-behavior: smooth;
+}
 
-        body {
-            min-height: 100vh;
-            font-family: Arial, Helvetica, sans-serif;
-            color: white;
-            background:
-                radial-gradient(circle at 20% 20%, rgba(80, 180, 255, 0.25), transparent 25%),
-                radial-gradient(circle at 80% 30%, rgba(150, 80, 255, 0.25), transparent 30%),
-                linear-gradient(135deg, #050817, #10152d, #050817);
-            overflow-x: hidden;
-        }
+body {
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
 
-        /* Background stars */
-        .stars {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 0;
-        }
+    background:
+        radial-gradient(circle at 15% 15%, rgba(64, 180, 255, .25), transparent 25%),
+        radial-gradient(circle at 85% 25%, rgba(150, 80, 255, .25), transparent 30%),
+        radial-gradient(circle at 50% 90%, rgba(80, 130, 255, .15), transparent 35%),
+        linear-gradient(135deg, #030511, #0b1026, #050816);
 
-        .star {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            background: white;
-            border-radius: 50%;
-            opacity: 0.7;
-            animation: twinkle 3s infinite alternate;
-        }
+    overflow-x: hidden;
+}
 
-        @keyframes twinkle {
-            from {
-                opacity: 0.2;
-                transform: scale(0.7);
-            }
+/* =========================
+   BACKGROUND
+========================= */
 
-            to {
-                opacity: 1;
-                transform: scale(1.3);
-            }
-        }
+.background-glow {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
 
-        /* Main content */
-        .container {
-            position: relative;
-            z-index: 1;
-            width: min(1100px, 92%);
-            margin: auto;
-            padding: 40px 0 80px;
-        }
+.star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: white;
+    border-radius: 50%;
+    opacity: .7;
+    animation: twinkle 3s infinite alternate;
+}
 
-        header {
-            text-align: center;
-            padding: 30px 0 20px;
-        }
+@keyframes twinkle {
+    from {
+        opacity: .2;
+        transform: scale(.7);
+    }
 
-        header h1 {
-            font-size: clamp(3rem, 10vw, 7rem);
-            letter-spacing: 12px;
-            margin-left: 12px;
-            font-weight: 900;
-            text-shadow:
-                0 0 10px rgba(255,255,255,0.5),
-                0 0 30px rgba(70,170,255,0.6);
-        }
+    to {
+        opacity: 1;
+        transform: scale(1.3);
+    }
+}
 
-        header p {
-            margin-top: 10px;
-            font-size: 1.1rem;
-            letter-spacing: 5px;
-            opacity: 0.8;
-        }
+/* =========================
+   MAIN
+========================= */
 
-        /* Logo */
-        .logo-area {
-            display: flex;
-            justify-content: center;
-            margin: 35px 0;
-        }
+.container {
+    position: relative;
+    z-index: 1;
 
-        .logo {
-            width: min(420px, 90%);
-            border-radius: 20px;
-            box-shadow:
-                0 0 30px rgba(70, 180, 255, 0.35),
-                0 20px 60px rgba(0, 0, 0, 0.5);
-        }
+    width: min(1100px, 92%);
+    margin: auto;
 
-        /* Music player */
-        .music-card {
-            max-width: 700px;
-            margin: 30px auto;
-            padding: 30px;
-            text-align: center;
+    padding: 45px 0 80px;
+}
 
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 24px;
+/* =========================
+   HEADER
+========================= */
 
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
+header {
+    text-align: center;
+    padding: 20px 0 35px;
+}
 
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-        }
+header h1 {
+    font-size: clamp(4rem, 12vw, 8rem);
+    font-weight: 900;
+    letter-spacing: 18px;
+    margin-left: 18px;
 
-        .music-card h2 {
-            margin-bottom: 10px;
-            font-size: 1.8rem;
-        }
+    text-shadow:
+        0 0 10px rgba(255,255,255,.5),
+        0 0 30px rgba(60,170,255,.7),
+        0 0 70px rgba(110,80,255,.4);
+}
 
-        .music-card p {
-            opacity: 0.7;
-            margin-bottom: 20px;
-        }
+header p {
+    margin-top: 12px;
 
-        audio {
-            width: 100%;
-            max-width: 600px;
-        }
+    font-size: 1rem;
+    letter-spacing: 7px;
 
-        .play-button {
-            margin-top: 20px;
-            padding: 14px 30px;
+    opacity: .7;
+}
 
-            border: none;
-            border-radius: 50px;
+/* =========================
+   MUSIC PLAYER
+========================= */
 
-            background: linear-gradient(135deg, #36b7ff, #775cff);
-            color: white;
+.player {
+    max-width: 900px;
+    margin: 0 auto;
 
-            font-size: 1rem;
-            font-weight: bold;
+    padding: 30px;
 
-            cursor: pointer;
+    border-radius: 30px;
 
-            box-shadow: 0 10px 30px rgba(60, 150, 255, 0.3);
+    background: rgba(255,255,255,.07);
 
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
+    border: 1px solid rgba(255,255,255,.15);
 
-        .play-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 35px rgba(60, 150, 255, 0.5);
-        }
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
 
-        /* Content */
-        .section {
-            margin-top: 50px;
-            padding: 35px;
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.45),
+        0 0 50px rgba(50,150,255,.08);
+}
 
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
+/* =========================
+   NOW PLAYING
+========================= */
 
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
+.now-playing {
+    text-align: center;
+}
 
-        .section h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 2rem;
-        }
+.album-art {
+    width: min(360px, 75vw);
+    aspect-ratio: 1 / 1;
 
-        .section p {
-            max-width: 800px;
-            margin: auto;
-            line-height: 1.8;
-            text-align: center;
-            color: rgba(255,255,255,0.8);
-        }
+    margin: 0 auto 25px;
 
-        /* Song list */
-        .songs {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 15px;
-            margin-top: 25px;
-        }
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-        .song {
-            padding: 18px;
-            border-radius: 15px;
-            background: rgba(255,255,255,0.07);
-            border: 1px solid rgba(255,255,255,0.08);
-            transition: 0.2s;
-        }
+    border-radius: 25px;
 
-        .song:hover {
-            transform: translateY(-3px);
-            background: rgba(255,255,255,0.12);
-        }
+    background:
+        radial-gradient(circle at 30% 30%, #58c7ff, transparent 25%),
+        radial-gradient(circle at 70% 70%, #8d5cff, transparent 30%),
+        linear-gradient(135deg, #101b45, #080b1c);
 
-        .song strong {
-            display: block;
-            margin-bottom: 5px;
-        }
+    border: 1px solid rgba(255,255,255,.2);
 
-        .song span {
-            font-size: 0.85rem;
-            opacity: 0.6;
-        }
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.45),
+        0 0 50px rgba(60,150,255,.2);
 
-        footer {
-            text-align: center;
-            margin-top: 60px;
-            opacity: 0.5;
-            font-size: 0.9rem;
-        }
+    transition: transform .3s ease;
+}
 
-        /* Mobile */
-        @media (max-width: 600px) {
-            .container {
-                width: 94%;
-            }
+.album-art.playing {
+    animation: albumPulse 3s ease-in-out infinite;
+}
 
-            header h1 {
-                letter-spacing: 6px;
-            }
+@keyframes albumPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
 
-            .section,
-            .music-card {
-                padding: 22px;
-            }
-        }
-    </style>
+    50% {
+        transform: scale(1.025);
+    }
+}
+
+.album-logo {
+    font-size: clamp(3rem, 10vw, 6rem);
+    font-weight: 900;
+    letter-spacing: 10px;
+
+    text-shadow:
+        0 0 20px rgba(255,255,255,.6),
+        0 0 50px rgba(70,180,255,.7);
+}
+
+.song-title {
+    font-size: clamp(1.5rem, 4vw, 2.4rem);
+    font-weight: 800;
+
+    margin-bottom: 7px;
+}
+
+.song-artist {
+    opacity: .55;
+    font-size: .95rem;
+}
+
+/* =========================
+   PROGRESS
+========================= */
+
+.progress-area {
+    margin-top: 30px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 7px;
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    border-radius: 10px;
+
+    background: rgba(255,255,255,.15);
+
+    cursor: pointer;
+}
+
+.progress-bar::-webkit-slider-thumb {
+    appearance: none;
+    -webkit-appearance: none;
+
+    width: 15px;
+    height: 15px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    box-shadow: 0 0 15px rgba(100,190,255,.8);
+
+    cursor: pointer;
+}
+
+.progress-bar::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: white;
+
+    cursor: pointer;
+}
+
+.time {
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 7px;
+
+    font-size: .8rem;
+    opacity: .5;
+}
+
+/* =========================
+   CONTROLS
+========================= */
+
+.controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 22px;
+
+    margin-top: 25px;
+}
+
+.control-btn {
+    width: 48px;
+    height: 48px;
+
+    border: none;
+    border-radius: 50%;
+
+    color: white;
+
+    background: rgba(255,255,255,.1);
+
+    cursor: pointer;
+
+    font-size: 1.1rem;
+
+    transition: .2s;
+}
+
+.control-btn:hover {
+    transform: scale(1.08);
+
+    background: rgba(255,255,255,.18);
+}
+
+.play-btn {
+    width: 68px;
+    height: 68px;
+
+    border-radius: 50%;
+
+    border: none;
+
+    color: white;
+
+    font-size: 1.5rem;
+
+    cursor: pointer;
+
+    background: linear-gradient(
+        135deg,
+        #36baff,
+        #755cff
+    );
+
+    box-shadow:
+        0 10px 30px rgba(50,150,255,.35);
+
+    transition: .2s;
+}
+
+.play-btn:hover {
+    transform: scale(1.08);
+
+    box-shadow:
+        0 15px 40px rgba(70,160,255,.55);
+}
+
+/* =========================
+   VOLUME
+========================= */
+
+.volume {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    margin-top: 22px;
+}
+
+.volume-icon {
+    font-size: 1rem;
+}
+
+.volume-slider {
+    width: 130px;
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    height: 5px;
+
+    border-radius: 10px;
+
+    background: rgba(255,255,255,.15);
+
+    cursor: pointer;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    appearance: none;
+    -webkit-appearance: none;
+
+    width: 13px;
+    height: 13px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    cursor: pointer;
+}
+
+/* =========================
+   PLAYLIST
+========================= */
+
+.playlist-title {
+    margin-top: 40px;
+    margin-bottom: 15px;
+
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.playlist {
+    max-height: 430px;
+
+    overflow-y: auto;
+
+    padding-right: 5px;
+}
+
+.playlist::-webkit-scrollbar {
+    width: 6px;
+}
+
+.playlist::-webkit-scrollbar-track {
+    background: rgba(255,255,255,.05);
+    border-radius: 10px;
+}
+
+.playlist::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,.2);
+    border-radius: 10px;
+}
+
+.song {
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 14px;
+
+    margin-bottom: 8px;
+
+    border-radius: 15px;
+
+    background: rgba(255,255,255,.045);
+
+    border: 1px solid transparent;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.song:hover {
+    background: rgba(255,255,255,.1);
+
+    transform: translateX(3px);
+}
+
+.song.active {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(55,180,255,.16),
+            rgba(120,80,255,.12)
+        );
+
+    border-color: rgba(100,180,255,.3);
+
+    box-shadow:
+        inset 3px 0 0 #55bdff;
+}
+
+.song-number {
+    width: 30px;
+
+    text-align: center;
+
+    opacity: .45;
+
+    font-size: .85rem;
+}
+
+.song-info {
+    flex: 1;
+}
+
+.song-name {
+    font-weight: 700;
+}
+
+.song-artist {
+    margin-top: 3px;
+
+    font-size: .78rem;
+
+    opacity: .45;
+}
+
+.song-status {
+    opacity: .6;
+}
+
+/* =========================
+   ABOUT
+========================= */
+
+.about {
+    max-width: 900px;
+
+    margin: 45px auto 0;
+
+    padding: 30px;
+
+    text-align: center;
+
+    border-radius: 25px;
+
+    background: rgba(255,255,255,.05);
+
+    border: 1px solid rgba(255,255,255,.1);
+
+    backdrop-filter: blur(15px);
+}
+
+.about h2 {
+    margin-bottom: 15px;
+}
+
+.about p {
+    max-width: 700px;
+
+    margin: auto;
+
+    line-height: 1.8;
+
+    color: rgba(255,255,255,.7);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    text-align: center;
+
+    margin-top: 50px;
+
+    opacity: .4;
+
+    font-size: .85rem;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .container {
+        width: 94%;
+    }
+
+    .player {
+        padding: 20px;
+    }
+
+    header h1 {
+        letter-spacing: 9px;
+        margin-left: 9px;
+    }
+
+    .controls {
+        gap: 12px;
+    }
+
+    .control-btn {
+        width: 43px;
+        height: 43px;
+    }
+
+    .play-btn {
+        width: 62px;
+        height: 62px;
+    }
+
+    .playlist {
+        max-height: 380px;
+    }
+}
+</style>
 </head>
 
 <body>
 
-    <!-- Stars -->
-    <div class="stars">
-        <div class="star" style="top:10%;left:15%;"></div>
-        <div class="star" style="top:20%;left:70%;"></div>
-        <div class="star" style="top:35%;left:40%;"></div>
-        <div class="star" style="top:50%;left:85%;"></div>
-        <div class="star" style="top:65%;left:20%;"></div>
-        <div class="star" style="top:75%;left:60%;"></div>
-        <div class="star" style="top:85%;left:35%;"></div>
-        <div class="star" style="top:15%;left:90%;"></div>
-        <div class="star" style="top:45%;left:10%;"></div>
-        <div class="star" style="top:90%;left:80%;"></div>
-    </div>
+<!-- Background stars -->
+<div class="background-glow">
 
-    <main class="container">
+    <div class="star" style="top:8%;left:12%;"></div>
+    <div class="star" style="top:15%;left:80%;"></div>
+    <div class="star" style="top:25%;left:45%;"></div>
+    <div class="star" style="top:40%;left:90%;"></div>
+    <div class="star" style="top:55%;left:15%;"></div>
+    <div class="star" style="top:68%;left:70%;"></div>
+    <div class="star" style="top:80%;left:30%;"></div>
+    <div class="star" style="top:90%;left:85%;"></div>
+    <div class="star" style="top:35%;left:8%;"></div>
+    <div class="star" style="top:75%;left:55%;"></div>
 
-        <header>
-            <h1>AHOF</h1>
-            <p>WELCOME TO OUR WORLD</p>
-        </header>
+</div>
 
-        <!-- Logo -->
-        <div class="logo-area">
-            <!--
-                If you have a logo image, replace this with:
+<main class="container">
 
-                <img src="images/logo.png" class="logo" alt="AHOF Logo">
-            -->
+<header>
+    <h1>AHOF</h1>
+    <p>WELCOME TO OUR WORLD</p>
+</header>
 
-            <div style="
-                width: min(420px, 90%);
-                aspect-ratio: 1 / 1;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-radius: 20px;
-                background: rgba(255,255,255,0.1);
-                border: 1px solid rgba(255,255,255,0.15);
-                font-size: 5rem;
-                font-weight: 900;
-                letter-spacing: 10px;
-            ">
+
+<!-- =========================
+     MUSIC PLAYER
+========================= -->
+
+<section class="player">
+
+    <div class="now-playing">
+
+        <div class="album-art" id="albumArt">
+
+            <div class="album-logo">
                 AHOF
             </div>
+
         </div>
 
-        <!-- MUSIC -->
-        <section class="music-card">
+        <div class="song-title" id="songTitle">
+            Butterfly
+        </div>
 
-            <h2>🎵 AHOF Music</h2>
+        <div class="song-artist">
+            AHOF
+        </div>
 
-            <p>
-                Listen to AHOF
-            </p>
+    </div>
 
-            <!--
-                IMPORTANT:
-                Your repository must contain:
 
-                music/
-                    AHOF.m4a
+    <!-- Progress -->
 
-                The path below is:
-                music/AHOF.m4a
-            -->
+    <div class="progress-area">
 
-            <audio id="ahofMusic" controls preload="metadata">
-                <source src="music/AHOF.m4a" type="audio/mp4">
-                Your browser does not support audio playback.
-            </audio>
+        <input
+            type="range"
+            class="progress-bar"
+            id="progressBar"
+            value="0"
+            min="0"
+            max="100"
+        >
 
-            <br>
+        <div class="time">
 
-            <button class="play-button" onclick="playMusic()">
-                ▶ Play AHOF
-            </button>
+            <span id="currentTime">
+                0:00
+            </span>
 
-        </section>
+            <span id="duration">
+                0:00
+            </span>
 
-        <!-- ABOUT -->
-        <section class="section">
+        </div>
 
-            <h2>About AHOF</h2>
+    </div>
 
-            <p>
-                Welcome to the AHOF website.
-                Explore our music, memories, and everything that makes
-                AHOF special.
-            </p>
 
-        </section>
+    <!-- Controls -->
 
-        <!-- SONGS -->
-        <section class="section">
+    <div class="controls">
 
-            <h2>🎶 Music Collection</h2>
+        <button
+            class="control-btn"
+            id="previousBtn"
+            title="Previous song"
+        >
+            ⏮
+        </button>
 
-            <div class="songs">
+        <button
+            class="play-btn"
+            id="playBtn"
+            title="Play / Pause"
+        >
+            ▶
+        </button>
 
-                <div class="song">
-                    <strong>Butterfly</strong>
-                    <span>AHOF</span>
+        <button
+            class="control-btn"
+            id="nextBtn"
+            title="Next song"
+        >
+            ⏭
+        </button>
+
+    </div>
+
+
+    <!-- Volume -->
+
+    <div class="volume">
+
+        <button
+            class="control-btn"
+            id="muteBtn"
+            title="Mute"
+        >
+            🔊
+        </button>
+
+        <input
+            type="range"
+            class="volume-slider"
+            id="volumeSlider"
+            min="0"
+            max="1"
+            step="0.01"
+            value="1"
+        >
+
+    </div>
+
+
+    <!-- Playlist -->
+
+    <div class="playlist-title">
+        🎵 AHOF Music Collection
+    </div>
+
+    <div class="playlist" id="playlist"></div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section class="about">
+
+    <h2>About AHOF</h2>
+
+    <p>
+        Welcome to the AHOF website.
+        Explore the music, memories, and everything
+        that makes AHOF special.
+    </p>
+
+</section>
+
+
+<footer>
+    © 2026 AHOF — All Rights Reserved
+</footer>
+
+</main>
+
+
+<!-- Hidden audio player -->
+
+<audio id="audioPlayer" preload="metadata"></audio>
+
+
+<script>
+
+/* ==========================================
+   AHOF SONG LIST
+
+   These files are in the ROOT of your
+   GitHub repository.
+
+   Keep the filenames exactly the same
+   as your uploaded MP3 files.
+========================================== */
+
+const songs = [
+
+    {
+        title: "Butterfly",
+        file: "AHOF_-_Butterfly_(mp3.pm).mp3"
+    },
+
+    {
+        title: "Everything Is Love",
+        file: "AHOF_-_Everything_Is_Love_(mp3.pm).mp3"
+    },
+
+    {
+        title: "IGNITION",
+        file: "AHOF_-_IGNITION_(mp3.pm).mp3"
+    },
+
+    {
+        title: "Incompleted",
+        file: "AHOF_-_Incompleted_(mp3.pm).mp3"
+    },
+
+    {
+        title: "JUST SAY YES",
+        file: "AHOF_-_JUST_SAY_YES_(mp3.pm).mp3"
+    },
+
+    {
+        title: "Mamma Mia, Who We Are",
+        file: "AHOF_-_Mamma_Mia,_Who_We_Are_(mp3.pm).mp3"
+    },
+
+    {
+        title: "Never Lose You",
+        file: "AHOF_-_Never_Lose_You_(mp3.pm).mp3"
+    },
+
+    {
+        title: "Our Story",
+        file: "AHOF_-_Our_Story_(mp3.pm).mp3"
+    },
+
+    {
+        title: "Pinocchio",
+        file: "AHOF_-_Pinocchio_(mp3.pm).mp3"
+    },
+
+    {
+        title: "RUN TO YOU",
+        file: "AHOF_-_RUN_TO_YOU_(mp3.pm).mp3"
+    },
+
+    {
+        title: "Rendezvous",
+        file: "AHOF_-_Rendezvous_(mp3.pm).mp3"
+    },
+
+    {
+        title: "Run at 1.5x Speed",
+        file: "AHOF_-_Run_at_1.5x_Speed_(mp3.pm).mp3"
+    },
+
+    {
+        title: "Sugar High",
+        file: "AHOF_-_Sugar_High_(mp3.pm).mp3"
+    },
+
+    {
+        title: "The Little Star",
+        file: "AHOF_-_The_Little_Star_(mp3.pm).mp3"
+    },
+
+    {
+        title: "The Sleeping Diary",
+        file: "AHOF_-_The_Sleeping_Diary_(mp3.pm).mp3"
+    },
+
+    {
+        title: "The Universe",
+        file: "AHOF_-_The_Universe_(mp3.pm).mp3"
+    },
+
+    {
+        title: "You're the Reason",
+        file: "AHOF_-_Youre_the_Reason_(mp3.pm).mp3"
+    }
+
+];
+
+
+/* ==========================================
+   ELEMENTS
+========================================== */
+
+const audio = document.getElementById("audioPlayer");
+
+const playBtn = document.getElementById("playBtn");
+
+const previousBtn = document.getElementById("previousBtn");
+
+const nextBtn = document.getElementById("nextBtn");
+
+const muteBtn = document.getElementById("muteBtn");
+
+const progressBar = document.getElementById("progressBar");
+
+const volumeSlider = document.getElementById("volumeSlider");
+
+const currentTimeDisplay =
+    document.getElementById("currentTime");
+
+const durationDisplay =
+    document.getElementById("duration");
+
+const songTitle =
+    document.getElementById("songTitle");
+
+const playlist =
+    document.getElementById("playlist");
+
+const albumArt =
+    document.getElementById("albumArt");
+
+
+/* ==========================================
+   CURRENT SONG
+========================================== */
+
+let currentSong = 0;
+
+
+/* ==========================================
+   BUILD PLAYLIST
+========================================== */
+
+function createPlaylist() {
+
+    playlist.innerHTML = "";
+
+    songs.forEach((song, index) => {
+
+        const item = document.createElement("div");
+
+        item.className = "song";
+
+        item.dataset.index = index;
+
+        item.innerHTML = `
+
+            <div class="song-number">
+                ${String(index + 1).padStart(2, "0")}
+            </div>
+
+            <div class="song-info">
+
+                <div class="song-name">
+                    ${song.title}
                 </div>
 
-                <div class="song">
-                    <strong>Everything Is Love</strong>
-                    <span>AHOF</span>
-                </div>
-
-                <div class="song">
-                    <strong>IGNITION</strong>
-                    <span>AHOF</span>
-                </div>
-
-                <div class="song">
-                    <strong>Incompleted</strong>
-                    <span>AHOF</span>
-                </div>
-
-                <div class="song">
-                    <strong>JUST SAY YES</strong>
-                    <span>AHOF</span>
-                </div>
-
-                <div class="song">
-                    <strong>Mamma Mia, Who We Are</strong>
-                    <span>AHOF</span>
-                </div>
-
-                <div class="song">
-                    <strong>Never Lose You</strong>
-                    <span>AHOF</span>
-                </div>
-
-                <div class="song">
-                    <strong>Our Story</strong>
-                    <span>AHOF</span>
-                </div>
-
-                <div class="song">
-                    <strong>Pinocchio</strong>
-                    <span>AHOF</span>
-                </div>
-
-                <div class="song">
-                    <strong>RUN TO YOU</strong>
-                    <span>AHOF</span>
-                </div>
-
-                <div class="song">
-                    <strong>Rendezvous</strong>
-                    <span>AHOF</span>
-                </div>
-
-                <div class="song">
-                    <strong>Run at 1.5x Speed</strong>
-                    <span>AHOF</span>
-                </div>
-
-                <div class="song">
-                    <strong>Sugar High</strong>
-                    <span>AHOF</span>
-                </div>
-
-                <div class="song">
-                    <strong>The Little Star</strong>
-                    <span>AHOF</span>
-                </div>
-
-                <div class="song">
-                    <strong>The Sleeping Diary</strong>
-                    <span>AHOF</span>
-                </div>
-
-                <div class="song">
-                    <strong>The Universe</strong>
-                    <span>AHOF</span>
-                </div>
-
-                <div class="song">
-                    <strong>You're the Reason</strong>
-                    <span>AHOF</span>
+                <div class="song-artist">
+                    AHOF
                 </div>
 
             </div>
 
-        </section>
+            <div class="song-status">
+                ▶
+            </div>
 
-        <footer>
-            © 2026 AHOF — All Rights Reserved
-        </footer>
+        `;
 
-    </main>
+        item.addEventListener("click", () => {
 
-    <script>
-        function playMusic() {
-            const music = document.getElementById("ahofMusic");
+            loadSong(index, true);
 
-            music.play()
-                .catch(function(error) {
-                    alert(
-                        "The music could not be played. " +
-                        "Please check that music/AHOF.m4a exists."
-                    );
+        });
 
-                    console.error("Music playback error:", error);
-                });
+        playlist.appendChild(item);
+
+    });
+
+}
+
+
+/* ==========================================
+   LOAD SONG
+========================================== */
+
+function loadSong(index, autoplay = false) {
+
+    currentSong = index;
+
+    const song = songs[currentSong];
+
+    audio.src = song.file;
+
+    songTitle.textContent = song.title;
+
+    progressBar.value = 0;
+
+    currentTimeDisplay.textContent = "0:00";
+
+    durationDisplay.textContent = "0:00";
+
+    updatePlaylist();
+
+    if (autoplay) {
+
+        audio.play()
+            .then(() => {
+
+                updatePlayButton();
+
+            })
+            .catch(error => {
+
+                console.error(
+                    "Could not play song:",
+                    error
+                );
+
+            });
+
+    }
+
+}
+
+
+/* ==========================================
+   UPDATE PLAYLIST
+========================================== */
+
+function updatePlaylist() {
+
+    const items =
+        document.querySelectorAll(".song");
+
+    items.forEach((item, index) => {
+
+        const status =
+            item.querySelector(".song-status");
+
+        if (index === currentSong) {
+
+            item.classList.add("active");
+
+            status.textContent =
+                audio.paused ? "▶" : "🔊";
+
+        } else {
+
+            item.classList.remove("active");
+
+            status.textContent = "▶";
+
         }
-    </script>
+
+    });
+
+}
+
+
+/* ==========================================
+   PLAY / PAUSE
+========================================== */
+
+function togglePlay() {
+
+    if (audio.paused) {
+
+        audio.play()
+            .catch(error => {
+
+                console.error(
+                    "Playback error:",
+                    error
+                );
+
+            });
+
+    } else {
+
+        audio.pause();
+
+    }
+
+}
+
+
+/* ==========================================
+   PLAY BUTTON
+========================================== */
+
+playBtn.addEventListener(
+    "click",
+    togglePlay
+);
+
+
+/* ==========================================
+   AUDIO EVENTS
+========================================== */
+
+audio.addEventListener(
+    "play",
+    () => {
+
+        updatePlayButton();
+
+        albumArt.classList.add("playing");
+
+        updatePlaylist();
+
+    }
+);
+
+audio.addEventListener(
+    "pause",
+    () => {
+
+        updatePlayButton();
+
+        albumArt.classList.remove("playing");
+
+        updatePlaylist();
+
+    }
+);
+
+
+/* ==========================================
+   UPDATE PLAY BUTTON
+========================================== */
+
+function updatePlayButton() {
+
+    playBtn.textContent =
+        audio.paused ? "▶" : "❚❚";
+
+}
+
+
+/* ==========================================
+   PREVIOUS
+========================================== */
+
+previousBtn.addEventListener(
+    "click",
+    () => {
+
+        currentSong--;
+
+        if (currentSong < 0) {
+
+            currentSong =
+                songs.length - 1;
+
+        }
+
+        loadSong(currentSong, true);
+
+    }
+);
+
+
+/* ==========================================
+   NEXT
+========================================== */
+
+nextBtn.addEventListener(
+    "click",
+    () => {
+
+        currentSong++;
+
+        if (currentSong >= songs.length) {
+
+            currentSong = 0;
+
+        }
+
+        loadSong(currentSong, true);
+
+    }
+);
+
+
+/* ==========================================
+   AUTO NEXT SONG
+========================================== */
+
+audio.addEventListener(
+    "ended",
+    () => {
+
+        currentSong++;
+
+        if (currentSong >= songs.length) {
+
+            currentSong = 0;
+
+        }
+
+        loadSong(currentSong, true);
+
+    }
+);
+
+
+/* ==========================================
+   DURATION
+========================================== */
+
+audio.addEventListener(
+    "loadedmetadata",
+    () => {
+
+        durationDisplay.textContent =
+            formatTime(audio.duration);
+
+    }
+);
+
+
+/* ==========================================
+   PROGRESS
+========================================== */
+
+audio.addEventListener(
+    "timeupdate",
+    () => {
+
+        if (!audio.duration) {
+            return;
+        }
+
+        const percentage =
+            (audio.currentTime / audio.duration) * 100;
+
+        progressBar.value = percentage;
+
+        currentTimeDisplay.textContent =
+            formatTime(audio.currentTime);
+
+    }
+);
+
+
+/* ==========================================
+   SEEK
+========================================== */
+
+progressBar.addEventListener(
+    "input",
+    () => {
+
+        if (!audio.duration) {
+            return;
+        }
+
+        audio.currentTime =
+            (progressBar.value / 100) *
+            audio.duration;
+
+    }
+);
+
+
+/* ==========================================
+   VOLUME
+========================================== */
+
+volumeSlider.addEventListener(
+    "input",
+    () => {
+
+        audio.volume =
+            volumeSlider.value;
+
+        audio.muted = false;
+
+        updateMuteButton();
+
+    }
+);
+
+
+/* ==========================================
+   MUTE
+========================================== */
+
+muteBtn.addEventListener(
+    "click",
+    () => {
+
+        audio.muted =
+            !audio.muted;
+
+        updateMuteButton();
+
+    }
+);
+
+
+function updateMuteButton() {
+
+    if (
+        audio.muted ||
+        audio.volume === 0
+    ) {
+
+        muteBtn.textContent = "🔇";
+
+    } else {
+
+        muteBtn.textContent = "🔊";
+
+    }
+
+}
+
+
+/* ==========================================
+   FORMAT TIME
+========================================== */
+
+function formatTime(seconds) {
+
+    if (
+        !seconds ||
+        isNaN(seconds)
+    ) {
+
+        return "0:00";
+
+    }
+
+    const minutes =
+        Math.floor(seconds / 60);
+
+    const remainingSeconds =
+        Math.floor(seconds % 60);
+
+    return (
+        minutes +
+        ":" +
+        String(remainingSeconds).padStart(2, "0")
+    );
+
+}
+
+
+/* ==========================================
+   START
+========================================== */
+
+createPlaylist();
+
+loadSong(0, false);
+
+audio.volume = 1;
+
+updateMuteButton();
+
+</script>
 
 </body>
 </html>
+```
+
+**Important:** I changed the player so the old `music/AHOF.m4a` requirement is gone. Your original file currently has that old audio source at `music/AHOF.m4a`.
+
+One thing to check before uploading: **the MP3 filenames in the JavaScript must exactly match the filenames in your GitHub repository**, including capitalization, spaces/underscores, commas, and `(mp3.pm)`. GitHub Pages treats those paths as exact file names.
+
+If you paste this over your current `index.html`, the 17-song playlist will be built automatically instead of having the old non-clickable song cards. Your existing page already lists those songs, including Butterfly through You're the Reason.
+
+If you want, send me a screenshot of the **17 MP3 filenames in your GitHub repository**, and I can check every filename against this code so we can avoid the dreaded **404 / audio won't play** problem.
