@@ -12,1400 +12,622 @@
 
 <title>ALL-Time HALL OF FAMER</title>
 
-
 <style>
-
-    /* =========================================================
-       RESET
-    ========================================================= */
-
-    * {
-        box-sizing: border-box;
-    }
-
-    html {
-        scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
-
         margin: 0;
         padding: 20px;
-
         font-family: Arial, sans-serif;
-
         color: white;
-
         text-align: center;
-
         background:
-            linear-gradient(
-                rgba(3, 7, 25, 0.35),
-                rgba(3, 7, 25, 0.45)
-            ),
+            linear-gradient(rgba(3, 7, 25, 0.35), rgba(3, 7, 25, 0.45)),
             url("https://i.pinimg.com/736x/d0/14/a3/d014a30be212765c60f815e42fd8cbae.jpg");
-
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
         background-attachment: fixed;
-
         overflow-x: hidden;
-
         min-height: 100vh;
     }
 
-
-    /* =========================================================
-       GLASS OVERLAY
-    ========================================================= */
-
     body::before {
-
         content: "";
-
         position: fixed;
-
         inset: 0;
-
         pointer-events: none;
-
         z-index: 0;
-
         background:
-            radial-gradient(
-                circle at 20% 20%,
-                rgba(241,196,15,0.10),
-                transparent 30%
-            ),
-
-            radial-gradient(
-                circle at 80% 70%,
-                rgba(255,255,255,0.08),
-                transparent 35%
-            );
+            radial-gradient(circle at 20% 20%, rgba(241,196,15,0.10), transparent 30%),
+            radial-gradient(circle at 80% 70%, rgba(255,255,255,0.08), transparent 35%);
     }
 
-
-    /* =========================================================
-       HEADER
-    ========================================================= */
-
-    header {
-
-        margin-bottom: 25px;
-
-        position: relative;
-
-        z-index: 10;
-    }
-
+    header { margin-bottom: 25px; position: relative; z-index: 10; }
 
     .logo {
-
         width: min(280px, 85%);
-
         height: auto;
-
         border-radius: 20px;
-
-        filter:
-            drop-shadow(
-                0 5px 20px
-                rgba(0,0,0,0.8)
-            );
+        filter: drop-shadow(0 5px 20px rgba(0,0,0,0.8));
     }
-
 
     header h1 {
-
         margin-top: 15px;
-
         color: white;
-
         font-size: 2.4rem;
-
         letter-spacing: 2px;
-
-        text-shadow:
-            0 3px 10px
-            rgba(0,0,0,0.95),
-
-            0 0 20px
-            rgba(241,196,15,0.25);
+        text-shadow: 0 3px 10px rgba(0,0,0,0.95), 0 0 20px rgba(241,196,15,0.25);
     }
-
-
-    /* =========================================================
-       MUSIC PLAYER
-    ========================================================= */
 
     .music-box {
-
         position: relative;
-
         z-index: 10;
-
         width: fit-content;
-
         margin: 0 auto 35px;
-
         padding: 10px 18px;
-
         border-radius: 30px;
-
-        background:
-            rgba(0,0,0,0.40);
-
-        border:
-            1px solid
-            rgba(255,255,255,0.25);
-
+        background: rgba(0,0,0,0.40);
+        border: 1px solid rgba(255,255,255,0.25);
         backdrop-filter: blur(12px);
-
         -webkit-backdrop-filter: blur(12px);
-
-        box-shadow:
-            0 5px 25px
-            rgba(0,0,0,0.4);
+        box-shadow: 0 5px 25px rgba(0,0,0,0.4);
     }
 
-
     .music-button {
-
         border: none;
-
         border-radius: 25px;
-
         padding: 11px 22px;
-
         cursor: pointer;
-
         font-weight: bold;
-
         color: #1b1b1b;
-
-        background:
-            linear-gradient(
-                135deg,
-                #fff3cd,
-                #f1c40f
-            );
-
+        background: linear-gradient(135deg, #fff3cd, #f1c40f);
         transition: 0.25s ease;
     }
 
-
     .music-button:hover {
-
-        transform:
-            translateY(-2px)
-            scale(1.03);
-
-        box-shadow:
-            0 5px 25px
-            rgba(241,196,15,0.55);
+        transform: translateY(-2px) scale(1.03);
+        box-shadow: 0 5px 25px rgba(241,196,15,0.55);
     }
 
-
-    /* =========================================================
-       MAIN HALL OF FAME
-    ========================================================= */
-
     .main-content {
-
         max-width: 1050px;
-
         margin: 0 auto;
-
         position: relative;
-
         z-index: 10;
-
         padding-bottom: 100px;
     }
 
-
     .grid {
-
         display: grid;
-
-        grid-template-columns:
-            repeat(3, 1fr);
-
+        grid-template-columns: repeat(3, 1fr);
         gap: 22px;
-
         max-width: 1000px;
-
         margin: 0 auto;
     }
 
-
-    /* =========================================================
-       CARD CONTAINER
-    ========================================================= */
-
     .card-container {
-
         width: 100%;
-
         height: 310px;
-
         perspective: 1000px;
-
         cursor: pointer;
     }
 
-
-    /* =========================================================
-       CARD
-    ========================================================= */
-
     .card {
-
         width: 100%;
-
         height: 100%;
-
         position: relative;
-
         transform-style: preserve-3d;
-
-        transition:
-            transform 0.65s
-            cubic-bezier(.2,.8,.2,1);
+        transition: transform 0.65s cubic-bezier(.2,.8,.2,1);
     }
 
-
-    .card.flipped {
-
-        transform:
-            rotateY(180deg);
-    }
-
-
-    /* =========================================================
-       CARD FACES
-    ========================================================= */
+    .card.flipped { transform: rotateY(180deg); }
 
     .card-face {
-
         width: 100%;
-
         height: 100%;
-
         position: absolute;
-
         backface-visibility: hidden;
-
         -webkit-backface-visibility: hidden;
-
         border-radius: 18px;
-
-        background:
-            linear-gradient(
-                135deg,
-                rgba(255,255,255,0.14),
-                rgba(255,255,255,0.035)
-            );
-
-        border:
-            1px solid
-            rgba(255,255,255,0.22);
-
-        box-shadow:
-            0 12px 35px
-            rgba(0,0,0,0.45),
-
-            inset 0 1px 0
-            rgba(255,255,255,0.08);
-
+        background: linear-gradient(135deg, rgba(255,255,255,0.14), rgba(255,255,255,0.035));
+        border: 1px solid rgba(255,255,255,0.22);
+        box-shadow: 0 12px 35px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.08);
         backdrop-filter: blur(10px);
-
         -webkit-backdrop-filter: blur(10px);
-
         display: flex;
-
         flex-direction: column;
-
         align-items: center;
-
         justify-content: center;
-
         padding: 20px;
-
         color: white;
-
         overflow: hidden;
     }
 
-
     .card-face::before {
-
         content: "";
-
         position: absolute;
-
         inset: 0;
-
         pointer-events: none;
-
-        background:
-            radial-gradient(
-                circle at 50% 0%,
-                rgba(241,196,15,0.12),
-                transparent 50%
-            );
+        background: radial-gradient(circle at 50% 0%, rgba(241,196,15,0.12), transparent 50%);
     }
-
-
-    /* =========================================================
-       PROFILE IMAGE
-    ========================================================= */
 
     .card-face img {
-
         width: 115px;
-
         height: 115px;
-
         border-radius: 50%;
-
         object-fit: cover;
-
         margin-bottom: 13px;
-
-        border:
-            3px solid
-            rgba(255,255,255,0.55);
-
-        box-shadow:
-            0 5px 20px
-            rgba(0,0,0,0.65),
-
-            0 0 20px
-            rgba(241,196,15,0.15);
+        border: 3px solid rgba(255,255,255,0.55);
+        box-shadow: 0 5px 20px rgba(0,0,0,0.65), 0 0 20px rgba(241,196,15,0.15);
     }
-
-
-    /* =========================================================
-       CARD TEXT
-    ========================================================= */
 
     .card-face h3 {
-
         margin: 5px 0;
-
         font-size: 1.2rem;
-
-        text-shadow:
-            0 2px 7px
-            rgba(0,0,0,0.95);
-
+        text-shadow: 0 2px 7px rgba(0,0,0,0.95);
         position: relative;
     }
-
 
     .card-face p {
-
         margin: 5px 0;
-
         font-size: 0.9rem;
-
         line-height: 1.5;
-
-        text-shadow:
-            0 2px 6px
-            rgba(0,0,0,0.9);
-
+        text-shadow: 0 2px 6px rgba(0,0,0,0.9);
         position: relative;
     }
 
-
-    /* =========================================================
-       CARD BACK
-    ========================================================= */
-
-    .card-back {
-
-        transform:
-            rotateY(180deg);
-    }
-
-
-    .card-back h3 {
-
-        color: #f1c40f;
-
-        font-size: 1.3rem;
-    }
-
-
-    /* =========================================================
-       PROFILE LINKS
-    ========================================================= */
+    .card-back { transform: rotateY(180deg); }
+    .card-back h3 { color: #f1c40f; font-size: 1.3rem; }
 
     .wiki-link {
-
         color: white;
-
         text-decoration: none;
-
         font-weight: bold;
-
-        text-shadow:
-            0 2px 6px
-            rgba(0,0,0,0.9);
+        text-shadow: 0 2px 6px rgba(0,0,0,0.9);
     }
 
-
     .wiki-link:hover {
-
         color: #f1c40f;
-
         text-decoration: underline;
     }
 
-
-    /* =========================================================
-       GLITTER
-    ========================================================= */
-
     .glitter {
-
         position: fixed;
-
         background: white;
-
         border-radius: 50%;
-
         pointer-events: none;
-
         z-index: 2;
-
         animation-name: fall;
-
         animation-timing-function: linear;
-
         animation-fill-mode: forwards;
     }
 
-
     @keyframes fall {
-
-        0% {
-
-            transform:
-                translateY(-30px)
-                scale(0.2)
-                rotate(0deg);
-
-            opacity: 0;
-        }
-
-
-        10% {
-
-            opacity: 1;
-        }
-
-
-        50% {
-
-            opacity: 1;
-        }
-
-
-        90% {
-
-            opacity: 0.9;
-        }
-
-
-        100% {
-
-            transform:
-                translateY(105vh)
-                scale(1.4)
-                rotate(180deg);
-
-            opacity: 0;
-        }
+        0% { transform: translateY(-30px) scale(0.2) rotate(0deg); opacity: 0; }
+        10% { opacity: 1; }
+        50% { opacity: 1; }
+        90% { opacity: 0.9; }
+        100% { transform: translateY(105vh) scale(1.4) rotate(180deg); opacity: 0; }
     }
-
-
-    /* =========================================================
-       SPARKLE BURST
-    ========================================================= */
 
     .sparkle-burst {
-
         position: fixed;
-
         pointer-events: none;
-
         z-index: 3;
-
         color: #fff3cd;
-
         font-size: 20px;
-
-        text-shadow:
-            0 0 8px #fff,
-            0 0 18px #f1c40f,
-            0 0 30px #f1c40f;
-
-        animation:
-            sparkleBurst 1.4s
-            ease-out forwards;
+        text-shadow: 0 0 8px #fff, 0 0 18px #f1c40f, 0 0 30px #f1c40f;
+        animation: sparkleBurst 1.4s ease-out forwards;
     }
-
 
     @keyframes sparkleBurst {
-
-        0% {
-
-            opacity: 0;
-
-            transform:
-                scale(0.2)
-                rotate(0deg);
-        }
-
-
-        20% {
-
-            opacity: 1;
-
-            transform:
-                scale(1.3)
-                rotate(45deg);
-        }
-
-
-        100% {
-
-            opacity: 0;
-
-            transform:
-                scale(0.3)
-                rotate(180deg);
-        }
+        0% { opacity: 0; transform: scale(0.2) rotate(0deg); }
+        20% { opacity: 1; transform: scale(1.3) rotate(45deg); }
+        100% { opacity: 0; transform: scale(0.3) rotate(180deg); }
     }
 
-
-    /* =========================================================
-       LEFT LIVE CONVERSATION
-    ========================================================= */
-
     .live-chat {
-
         position: fixed;
-
         left: 18px;
-
         top: 50%;
-
-        transform:
-            translateY(-50%);
-
+        transform: translateY(-50%);
         width: 300px;
-
         max-height: 610px;
-
         z-index: 50;
-
         display: flex;
-
         flex-direction: column;
-
         border-radius: 22px;
-
         overflow: hidden;
-
-        background:
-            linear-gradient(
-                145deg,
-                rgba(5,10,30,0.82),
-                rgba(15,15,35,0.72)
-            );
-
-        border:
-            1px solid
-            rgba(255,255,255,0.22);
-
-        box-shadow:
-            0 20px 55px
-            rgba(0,0,0,0.6),
-
-            0 0 35px
-            rgba(241,196,15,0.10);
-
+        background: linear-gradient(145deg, rgba(5,10,30,0.82), rgba(15,15,35,0.72));
+        border: 1px solid rgba(255,255,255,0.22);
+        box-shadow: 0 20px 55px rgba(0,0,0,0.6), 0 0 35px rgba(241,196,15,0.10);
         backdrop-filter: blur(16px);
-
         -webkit-backdrop-filter: blur(16px);
     }
 
-
     .chat-header {
-
         display: flex;
-
         align-items: center;
-
         justify-content: space-between;
-
         padding: 14px 16px;
-
-        background:
-            linear-gradient(
-                135deg,
-                rgba(241,196,15,0.22),
-                rgba(255,255,255,0.06)
-            );
-
-        border-bottom:
-            1px solid
-            rgba(255,255,255,0.15);
+        background: linear-gradient(135deg, rgba(241,196,15,0.22), rgba(255,255,255,0.06));
+        border-bottom: 1px solid rgba(255,255,255,0.15);
     }
 
-
-    .chat-title {
-
-        margin: 0;
-
-        font-size: 1rem;
-
-        color: white;
-    }
-
+    .chat-title { margin: 0; font-size: 1rem; color: white; }
 
     .chat-status {
-
         display: flex;
-
         align-items: center;
-
         gap: 6px;
-
         font-size: 0.7rem;
-
-        color:
-            rgba(255,255,255,0.7);
+        color: rgba(255,255,255,0.7);
     }
-
 
     .online-dot {
-
         width: 8px;
-
         height: 8px;
-
         border-radius: 50%;
-
         background: #2ecc71;
-
-        box-shadow:
-            0 0 10px
-            #2ecc71;
+        box-shadow: 0 0 10px #2ecc71;
     }
 
-
     .chat-toggle {
-
         border: none;
-
-        background:
-            rgba(255,255,255,0.10);
-
+        background: rgba(255,255,255,0.10);
         color: white;
-
         width: 30px;
-
         height: 30px;
-
         border-radius: 50%;
-
         cursor: pointer;
-
         font-size: 1rem;
     }
 
-
     .chat-body {
-
         display: flex;
-
         flex-direction: column;
-
         min-height: 0;
-
         overflow: hidden;
     }
 
-
     .chat-messages {
-
         padding: 12px;
-
         max-height: 350px;
-
         overflow-y: auto;
-
         display: flex;
-
         flex-direction: column;
-
         gap: 10px;
     }
 
-
-    .chat-messages::-webkit-scrollbar {
-
-        width: 5px;
-    }
-
+    .chat-messages::-webkit-scrollbar { width: 5px; }
 
     .chat-messages::-webkit-scrollbar-thumb {
-
-        background:
-            rgba(241,196,15,0.45);
-
+        background: rgba(241,196,15,0.45);
         border-radius: 10px;
     }
 
-
     .chat-message {
-
         text-align: left;
-
         padding: 10px 12px;
-
         border-radius: 14px;
-
-        background:
-            rgba(255,255,255,0.07);
-
-        border:
-            1px solid
-            rgba(255,255,255,0.10);
-
-        animation:
-            chatAppear 0.35s ease;
+        background: rgba(255,255,255,0.07);
+        border: 1px solid rgba(255,255,255,0.10);
+        animation: chatAppear 0.35s ease;
     }
-
 
     @keyframes chatAppear {
-
-        from {
-
-            opacity: 0;
-
-            transform:
-                translateY(8px);
-        }
-
-        to {
-
-            opacity: 1;
-
-            transform:
-                translateY(0);
-        }
+        from { opacity: 0; transform: translateY(8px); }
+        to { opacity: 1; transform: translateY(0); }
     }
 
-
     .chat-message-name {
-
         color: #f1c40f;
-
         font-weight: bold;
-
         font-size: 0.82rem;
-
         margin-bottom: 4px;
     }
 
-
     .chat-message-text {
-
-        color:
-            rgba(255,255,255,0.9);
-
+        color: rgba(255,255,255,0.9);
         font-size: 0.82rem;
-
         line-height: 1.45;
-
         white-space: pre-wrap;
-
         overflow-wrap: anywhere;
     }
 
-
     .chat-message-date {
-
-        color:
-            rgba(255,255,255,0.4);
-
+        color: rgba(255,255,255,0.4);
         font-size: 0.65rem;
-
         margin-top: 5px;
     }
 
-
     .chat-empty {
-
-        color:
-            rgba(255,255,255,0.5);
-
+        color: rgba(255,255,255,0.5);
         font-size: 0.8rem;
-
         padding: 25px 10px;
-
         line-height: 1.5;
     }
 
-
     .chat-form {
-
         padding: 12px;
-
-        border-top:
-            1px solid
-            rgba(255,255,255,0.12);
-
+        border-top: 1px solid rgba(255,255,255,0.12);
         display: flex;
-
         flex-direction: column;
-
         gap: 8px;
     }
 
-
     .chat-input {
-
         width: 100%;
-
-        border: 1px solid
-            rgba(255,255,255,0.18);
-
+        border: 1px solid rgba(255,255,255,0.18);
         border-radius: 10px;
-
-        background:
-            rgba(0,0,0,0.25);
-
+        background: rgba(0,0,0,0.25);
         color: white;
-
         padding: 9px 10px;
-
         outline: none;
-
         font-family: Arial, sans-serif;
-
         font-size: 0.82rem;
     }
 
+    .chat-input::placeholder { color: rgba(255,255,255,0.5); }
 
-    .chat-input::placeholder {
+    .chat-input:focus { border-color: rgba(241,196,15,0.7); }
 
-        color:
-            rgba(255,255,255,0.5);
-    }
-
-
-    .chat-input:focus {
-
-        border-color:
-            rgba(241,196,15,0.7);
-    }
-
-
-    .chat-text {
-
-        min-height: 65px;
-
-        resize: vertical;
-    }
-
+    .chat-text { min-height: 65px; resize: vertical; }
 
     .chat-send {
-
         border: none;
-
         border-radius: 18px;
-
         padding: 9px;
-
         font-weight: bold;
-
         cursor: pointer;
-
         color: #1b1b1b;
-
-        background:
-            linear-gradient(
-                135deg,
-                #fff3cd,
-                #f1c40f
-            );
+        background: linear-gradient(135deg, #fff3cd, #f1c40f);
     }
 
-
-    /* =========================================================
-       COLLAPSED CHAT
-    ========================================================= */
-
     .live-chat.collapsed {
-
         width: 58px;
-
         height: 58px;
-
         max-height: 58px;
-
         border-radius: 50%;
     }
 
-
     .live-chat.collapsed .chat-body,
     .live-chat.collapsed .chat-title,
-    .live-chat.collapsed .chat-status {
-
-        display: none;
-    }
-
+    .live-chat.collapsed .chat-status { display: none; }
 
     .live-chat.collapsed .chat-header {
-
         height: 100%;
-
         padding: 0;
-
         justify-content: center;
-
         border: none;
     }
 
-
     .live-chat.collapsed .chat-toggle {
-
         width: 58px;
-
         height: 58px;
-
         font-size: 1.3rem;
-
-        background:
-            linear-gradient(
-                135deg,
-                #fff3cd,
-                #f1c40f
-            );
-
+        background: linear-gradient(135deg, #fff3cd, #f1c40f);
         color: #1b1b1b;
     }
 
-
-    /* =========================================================
-       FEEDBACK SECTION
-    ========================================================= */
-
     .feedback-section {
-
         max-width: 900px;
-
         margin: 90px auto 40px;
-
         padding: 35px;
-
         position: relative;
-
         z-index: 10;
-
         border-radius: 25px;
-
-        background:
-            linear-gradient(
-                135deg,
-                rgba(255,255,255,0.13),
-                rgba(255,255,255,0.04)
-            );
-
-        border:
-            1px solid
-            rgba(255,255,255,0.23);
-
-        box-shadow:
-            0 15px 45px
-            rgba(0,0,0,0.45);
-
+        background: linear-gradient(135deg, rgba(255,255,255,0.13), rgba(255,255,255,0.04));
+        border: 1px solid rgba(255,255,255,0.23);
+        box-shadow: 0 15px 45px rgba(0,0,0,0.45);
         backdrop-filter: blur(14px);
-
         -webkit-backdrop-filter: blur(14px);
     }
 
-
     .feedback-title {
-
         margin-top: 0;
-
         font-size: 2rem;
-
-        text-shadow:
-            0 3px 10px
-            rgba(0,0,0,0.8);
+        text-shadow: 0 3px 10px rgba(0,0,0,0.8);
     }
 
-
     .feedback-message {
-
         max-width: 750px;
-
-        margin:
-            0 auto 25px;
-
+        margin: 0 auto 25px;
         padding: 18px 22px;
-
         border-radius: 18px;
-
-        background:
-            rgba(255,255,255,0.07);
-
-        border:
-            1px solid
-            rgba(255,255,255,0.15);
-
-        color:
-            rgba(255,255,255,0.9);
-
+        background: rgba(255,255,255,0.07);
+        border: 1px solid rgba(255,255,255,0.15);
+        color: rgba(255,255,255,0.9);
         line-height: 1.7;
     }
 
-
-    .sparkle {
-
-        color: #f1c40f;
-
-        font-size: 1.15rem;
-    }
-
+    .sparkle { color: #f1c40f; font-size: 1.15rem; }
 
     .feedback-form {
-
         display: flex;
-
         flex-direction: column;
-
         gap: 12px;
     }
 
-
     .feedback-input {
-
         width: 100%;
-
         padding: 14px 16px;
-
         border-radius: 14px;
-
-        border:
-            1px solid
-            rgba(255,255,255,0.22);
-
-        background:
-            rgba(0,0,0,0.25);
-
+        border: 1px solid rgba(255,255,255,0.22);
+        background: rgba(0,0,0,0.25);
         color: white;
-
         outline: none;
-
         font-family: Arial, sans-serif;
-
         font-size: 1rem;
     }
 
-
-    .feedback-input::placeholder {
-
-        color:
-            rgba(255,255,255,0.55);
-    }
-
+    .feedback-input::placeholder { color: rgba(255,255,255,0.55); }
 
     .feedback-input:focus {
-
-        border-color:
-            rgba(241,196,15,0.8);
-
-        background:
-            rgba(0,0,0,0.35);
+        border-color: rgba(241,196,15,0.8);
+        background: rgba(0,0,0,0.35);
     }
 
-
-    .feedback-message-input {
-
-        min-height: 140px;
-
-        resize: vertical;
-    }
-
+    .feedback-message-input { min-height: 140px; resize: vertical; }
 
     .feedback-button {
-
         align-self: center;
-
         border: none;
-
         padding: 12px 30px;
-
         border-radius: 30px;
-
         cursor: pointer;
-
         font-weight: bold;
-
         color: #1b1b1b;
-
-        background:
-            linear-gradient(
-                135deg,
-                #fff3cd,
-                #f1c40f
-            );
-
-        box-shadow:
-            0 5px 18px
-            rgba(241,196,15,0.25);
+        background: linear-gradient(135deg, #fff3cd, #f1c40f);
+        box-shadow: 0 5px 18px rgba(241,196,15,0.25);
     }
 
+    .feedback-button:disabled {
+        opacity: 0.65;
+        cursor: wait;
+    }
 
-    /* =========================================================
-       FOOTER
-    ========================================================= */
+    #feedback-list {
+        max-width: 750px;
+        margin: 30px auto 0;
+    }
+
+    .feedback-list-title {
+        color: #f1c40f;
+        margin: 0 0 15px;
+        font-size: 1.25rem;
+    }
+
+    .feedback-item {
+        text-align: left;
+        margin: 0 auto 14px;
+        padding: 18px 20px;
+        border-radius: 18px;
+        background: rgba(255,255,255,0.07);
+        border: 1px solid rgba(255,255,255,0.15);
+        box-shadow: 0 8px 22px rgba(0,0,0,0.18);
+    }
+
+    .feedback-item-name {
+        font-weight: bold;
+        color: #f1c40f;
+        margin-bottom: 7px;
+    }
+
+    .feedback-item-text {
+        color: rgba(255,255,255,0.9);
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+        line-height: 1.5;
+    }
+
+    .feedback-item-date {
+        color: rgba(255,255,255,0.4);
+        font-size: 0.7rem;
+        margin-top: 9px;
+    }
 
     footer {
-
         position: relative;
-
         z-index: 10;
-
         margin-top: 30px;
-
         padding: 25px;
-
-        color:
-            rgba(255,255,255,0.5);
-
+        color: rgba(255,255,255,0.5);
         font-size: 0.8rem;
     }
 
-
-    /* =========================================================
-       MOBILE
-    ========================================================= */
-
     @media (max-width: 1200px) {
-
-        .live-chat {
-
-            width: 270px;
-
-            left: 10px;
-        }
+        .live-chat { width: 270px; left: 10px; }
     }
 
-
     @media (max-width: 1000px) {
-
         .live-chat {
-
             position: fixed;
-
             left: 15px;
-
             bottom: 15px;
-
             top: auto;
-
             transform: none;
-
             width: 290px;
-
             max-height: 500px;
         }
 
-        .grid {
-
-            grid-template-columns:
-                repeat(2, 1fr);
-        }
+        .grid { grid-template-columns: repeat(2, 1fr); }
     }
 
-
     @media (max-width: 700px) {
-
-        body {
-
-            padding: 10px;
-        }
-
+        body { padding: 10px; }
 
         header h1 {
-
             font-size: 1.7rem;
-
             letter-spacing: 1px;
         }
 
-
-        .grid {
-
-            grid-template-columns: 1fr;
-        }
-
-
-        .card-container {
-
-            height: 300px;
-        }
-
+        .grid { grid-template-columns: 1fr; }
+        .card-container { height: 300px; }
 
         .live-chat {
-
             width: calc(100% - 30px);
-
             left: 15px;
-
             bottom: 15px;
-
             max-height: 440px;
         }
 
-
-        .chat-messages {
-
-            max-height: 250px;
-        }
-
+        .chat-messages { max-height: 250px; }
 
         .feedback-section {
-
             padding: 22px;
-
             margin-top: 60px;
         }
 
-
-        .feedback-title {
-
-            font-size: 1.6rem;
-        }
+        .feedback-title { font-size: 1.6rem; }
     }
 
-
     @media (max-width: 450px) {
-
         .live-chat {
-
             width: calc(100% - 20px);
-
             left: 10px;
-
             bottom: 10px;
         }
     }
-
 </style>
 
 </head>
 
 <body>
 
-<!-- =========================================================
-     MUSIC
-========================================================= -->
-
 <div class="music-box">
-
-    <audio
-        id="bg-music"
-        src="AHOF_-_Butterfly_(mp3.pm).mp3"
-        loop>
-    </audio>
-
-    <button
-        type="button"
-        class="music-button"
-        id="music-button">
-
-        🎵 Play Music
-
-    </button>
-
+    <audio id="bg-music" src="AHOF_-_Butterfly_(mp3.pm).mp3" loop></audio>
+    <button type="button" class="music-button" id="music-button">🎵 Play Music</button>
 </div>
 
-
-<!-- =========================================================
-     HEADER
-========================================================= -->
-
 <header>
-
     <img
         src="https://i.pinimg.com/736x/d6/66/ed/d666ed989eae452547e6645acb2b28e1.jpg"
         alt="ALL-Time Hall of Famer Logo"
         class="logo">
 
-    <h1>
-        ✨ ALL-Time HALL OF FAMER ✨
-    </h1>
-
+    <h1>✨ ALL-Time HALL OF FAMER ✨</h1>
 </header>
-
-
-<!-- =========================================================
-     MAIN CONTENT
-========================================================= -->
 
 <main class="main-content">
 
-    <div
-        class="grid"
-        id="team-grid">
-    </div>
+    <div class="grid" id="team-grid"></div>
 
+    <section class="feedback-section" id="feedback">
 
-    <!-- =====================================================
-         FEEDBACK
-    ===================================================== -->
-
-    <section
-        class="feedback-section"
-        id="feedback">
-
-        <h2 class="feedback-title">
-            ✨ Feedback & Suggestions ✨
-        </h2>
-
+        <h2 class="feedback-title">✨ Feedback & Suggestions ✨</h2>
 
         <div class="feedback-message">
-
             <span class="sparkle">✦</span>
-
             Have an idea for the Hall of Fame?
-
-            Tell us what you think,
-            suggest improvements,
+            Tell us what you think, suggest improvements,
             or share your favorite moments.
-
             <span class="sparkle">✦</span>
-
         </div>
 
-
-        <form
-            class="feedback-form"
-            id="feedback-form">
+        <form class="feedback-form" id="feedback-form">
 
             <input
                 type="text"
@@ -1413,97 +635,69 @@
                 class="feedback-input"
                 placeholder="Your name"
                 autocomplete="nickname"
+                maxlength="100"
                 required>
-
 
             <textarea
                 id="feedback-message"
                 class="feedback-input feedback-message-input"
                 placeholder="Write your feedback or suggestion..."
+                maxlength="2000"
                 required></textarea>
 
-
-            <button
-                type="submit"
-                class="feedback-button">
-
+            <button type="submit" class="feedback-button">
                 💛 Submit Feedback
-
             </button>
 
         </form>
+
+        <!-- FIX: permanent display area for Supabase feedback -->
+        <div id="feedback-list">
+            <div class="feedback-message">
+                ✨ Loading feedback...
+            </div>
+        </div>
 
     </section>
 
 </main>
 
-
-<!-- =========================================================
-     LIVE CHAT
-========================================================= -->
-
-<aside
-    class="live-chat"
-    id="live-chat">
-
+<aside class="live-chat" id="live-chat">
 
     <div class="chat-header">
 
         <div>
-
-            <h3 class="chat-title">
-                💬 Live Conversation
-            </h3>
+            <h3 class="chat-title">💬 Live Conversation</h3>
 
             <div class="chat-status">
-
                 <span class="online-dot"></span>
-
                 Community Chat
-
             </div>
-
         </div>
-
 
         <button
             type="button"
             class="chat-toggle"
             id="chat-toggle"
             title="Collapse chat">
-
             −
-
         </button>
 
     </div>
 
-
     <div class="chat-body">
 
-
-        <div
-            class="chat-messages"
-            id="chat-messages">
+        <div class="chat-messages" id="chat-messages">
 
             <div class="chat-empty">
-
-                ✨ Welcome to the Hall of Fame
-                conversation!
-
+                ✨ Welcome to the Hall of Fame conversation!
                 <br><br>
-
-                Leave a message and start
-                the discussion.
-
+                Leave a message and start the discussion.
             </div>
 
         </div>
 
-
-        <form
-            class="chat-form"
-            id="chat-form">
+        <form class="chat-form" id="chat-form">
 
             <input
                 type="text"
@@ -1511,22 +705,18 @@
                 class="chat-input"
                 placeholder="Your name"
                 autocomplete="nickname"
+                maxlength="100"
                 required>
-
 
             <textarea
                 id="chat-text"
                 class="chat-input chat-text"
                 placeholder="Say something..."
+                maxlength="2000"
                 required></textarea>
 
-
-            <button
-                type="submit"
-                class="chat-send">
-
+            <button type="submit" class="chat-send">
                 ✨ Send
-
             </button>
 
         </form>
@@ -1535,28 +725,13 @@
 
 </aside>
 
-
-<!-- =========================================================
-     FOOTER
-========================================================= -->
-
 <footer>
-
     ✦ ALL-Time HALL OF FAMER ✦
-
     <br>
-
     Made with ✨ and appreciation
-
 </footer>
 
-
-<!-- =========================================================
-     JAVASCRIPT
-========================================================= -->
-
 <script>
-
 
     /* =========================================================
        HALL OF FAME MEMBERS
@@ -1566,152 +741,74 @@
 
         {
             name: "JL Gaspar",
-
             desc: "The Sassy Center",
-
-            info:
-                "Filipino, born on April 21, 2004",
-
-            link:
-                "https://en.wikipedia.org/wiki/JL_Gaspar",
-
-            image:
-                "https://i.pinimg.com/736x/91/86/a2/9186a201623045ff4dc7550a345e78c7.jpg"
+            info: "Filipino, born on April 21, 2004",
+            link: "https://en.wikipedia.org/wiki/JL_Gaspar",
+            image: "https://i.pinimg.com/736x/91/86/a2/9186a201623045ff4dc7550a345e78c7.jpg"
         },
-
 
         {
             name: "Park Han",
-
             desc: "The Yearner Vocalist",
-
-            info:
-                "Korean, born on September 25, 2003",
-
-            link:
-                "https://en.namu.wiki/w/%EB%B0%95%ED%95%9C(AHOF)",
-
-            image:
-                "https://i.pinimg.com/736x/44/28/e6/4428e6953c10396c5f8ea3e9f0df6896.jpg"
+            info: "Korean, born on September 25, 2003",
+            link: "https://en.namu.wiki/w/%EB%B0%95%ED%95%9C(AHOF)",
+            image: "https://i.pinimg.com/736x/44/28/e6/4428e6953c10396c5f8ea3e9f0df6896.jpg"
         },
-
 
         {
             name: "Steven Kim",
-
-            desc:
-                "The Aussie Muscleman Leader",
-
-            info:
-                "Half Korean-Half Australian, born on January 17, 2000",
-
-            link:
-                "https://kpop.fandom.com/wiki/Steven",
-
-            image:
-                "https://i.pinimg.com/736x/b8/25/f9/b825f918dd85c4e918fd997b1ff1ab71.jpg"
+            desc: "The Aussie Muscleman Leader",
+            info: "Half Korean-Half Australian, born on January 17, 2000",
+            link: "https://kpop.fandom.com/wiki/Steven",
+            image: "https://i.pinimg.com/736x/b8/25/f9/b825f918dd85c4e918fd997b1ff1ab71.jpg"
         },
-
 
         {
             name: "ChihEn",
-
-            desc:
-                "The Nonchalant Visual",
-
-            info:
-                "Taiwanese, born on October 28, 2006",
-
-            link:
-                "https://kprofiles.com/chih-en-ahof-profile-and-facts/",
-
-            image:
-                "https://i.pinimg.com/1200x/0e/bc/6d/0ebc6da7b1a4a702a808b0b199c23e06.jpg"
+            desc: "The Nonchalant Visual",
+            info: "Taiwanese, born on October 28, 2006",
+            link: "https://kprofiles.com/chih-en-ahof-profile-and-facts/",
+            image: "https://i.pinimg.com/1200x/0e/bc/6d/0ebc6da7b1a4a702a808b0b199c23e06.jpg"
         },
-
 
         {
             name: "Daisuke",
-
-            desc:
-                "The Youngest Monzter",
-
-            info:
-                "Japanese, born on December 25, 2009",
-
-            link:
-                "https://kpop.fandom.com/wiki/Daisuke_(AHOF)",
-
-            image:
-                "https://i.pinimg.com/736x/70/48/fb/7048fb148dde2d31fae382e8bdf44ef8.jpg"
+            desc: "The Youngest Monzter",
+            info: "Japanese, born on December 25, 2009",
+            link: "https://kpop.fandom.com/wiki/Daisuke_(AHOF)",
+            image: "https://i.pinimg.com/736x/70/48/fb/7048fb148dde2d31fae382e8bdf44ef8.jpg"
         },
-
 
         {
             name: "Seo Jeongwo",
-
-            desc:
-                "The Second Lead Syndrome",
-
-            info:
-                "Korean, born on September 06, 2001",
-
-            link:
-                "https://kprofiles.com/jeongwoo-ahof-profile-and-facts/",
-
-            image:
-                "https://i.pinimg.com/736x/fe/73/54/fe7354a6614a752fd37261c80f9469b9.jpg"
+            desc: "The Second Lead Syndrome",
+            info: "Korean, born on September 06, 2001",
+            link: "https://kprofiles.com/jeongwoo-ahof-profile-and-facts/",
+            image: "https://i.pinimg.com/736x/fe/73/54/fe7354a6614a752fd37261c80f9469b9.jpg"
         },
-
 
         {
             name: "Park Juwon",
-
-            desc:
-                "The Main \"Crybaby\" Dancer",
-
-            info:
-                "Korean, born on July 24, 2006",
-
-            link:
-                "https://kprofiles.com/park-juwon-ahof-profile-and-facts/",
-
-            image:
-                "https://i.pinimg.com/1200x/31/d7/4d/31d74d6b7646b92222130d769ba98a8c.jpg"
+            desc: "The Main \"Crybaby\" Dancer",
+            info: "Korean, born on July 24, 2006",
+            link: "https://kprofiles.com/park-juwon-ahof-profile-and-facts/",
+            image: "https://i.pinimg.com/1200x/31/d7/4d/31d74d6b7646b92222130d769ba98a8c.jpg"
         },
-
 
         {
             name: "Zhang Shuaibo",
-
-            desc:
-                "The Pretty Choleric Diva",
-
-            info:
-                "Chinese, born on July 02, 2002",
-
-            link:
-                "https://kprofiles.com/shuaibo-ahof-profile-and-facts/",
-
-            image:
-                "https://i.pinimg.com/736x/2c/6e/1d/2c6e1de1b56889e1d796f5aa00cc0015.jpg"
+            desc: "The Pretty Choleric Diva",
+            info: "Chinese, born on July 02, 2002",
+            link: "https://kprofiles.com/shuaibo-ahof-profile-and-facts/",
+            image: "https://i.pinimg.com/736x/2c/6e/1d/2c6e1de1b56889e1d796f5aa00cc0015.jpg"
         },
-
 
         {
             name: "Cha Woongki",
-
-            desc:
-                "The Sassy Diva",
-
-            info:
-                "Korean, born on April 23, 2002",
-
-            link:
-                "https://en.wikipedia.org/wiki/Cha_Woong-ki",
-
-            image:
-                "https://i.pinimg.com/736x/46/31/90/4631908612149ad38c21f8f234c4e77a.jpg"
+            desc: "The Sassy Diva",
+            info: "Korean, born on April 23, 2002",
+            link: "https://en.wikipedia.org/wiki/Cha_Woong-ki",
+            image: "https://i.pinimg.com/736x/46/31/90/4631908612149ad38c21f8f234c4e77a.jpg"
         }
 
     ];
@@ -1721,159 +818,110 @@
        CREATE HALL OF FAME CARDS
     ========================================================= */
 
-    const grid =
-        document.getElementById("team-grid");
+    const grid = document.getElementById("team-grid");
 
+    people.forEach((person, index) => {
 
-    people.forEach(
-        (person, index) => {
+        const container = document.createElement("div");
 
-            const container =
-                document.createElement("div");
+        container.className = "card-container";
 
-            container.className =
-                "card-container";
+        container.innerHTML = `
 
+            <div class="card" id="card-${index}">
 
-            container.innerHTML = `
+                <div class="card-face">
 
-                <div
-                    class="card"
-                    id="card-${index}">
+                    <img
+                        src="${person.image}"
+                        alt="${person.name}"
+                        loading="lazy">
 
-                    <div class="card-face">
+                    <h3>
 
-                        <img
-                            src="${person.image}"
-                            alt="${person.name}"
-                            loading="lazy">
+                        <a
+                            href="${person.link}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="wiki-link">
 
-                        <h3>
+                            ${person.name}
 
-                            <a
-                                href="${person.link}"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="wiki-link">
+                        </a>
 
-                                ${person.name}
+                    </h3>
 
-                            </a>
-
-                        </h3>
-
-                        <p>
-                            ${person.desc}
-                        </p>
-
-                    </div>
-
-
-                    <div
-                        class="card-face card-back">
-
-                        <h3>
-                            More Info
-                        </h3>
-
-                        <p>
-                            ${person.info}
-                        </p>
-
-                        <p>
-                            Click again to flip back.
-                        </p>
-
-                    </div>
+                    <p>${person.desc}</p>
 
                 </div>
-            `;
 
+                <div class="card-face card-back">
 
-            container.addEventListener(
-                "click",
-                (event) => {
+                    <h3>More Info</h3>
 
-                    if (
-                        event.target.tagName !== "A"
-                    ) {
+                    <p>${person.info}</p>
 
-                        const card =
-                            document.getElementById(
-                                `card-${index}`
-                            );
+                    <p>Click again to flip back.</p>
 
-                        card.classList.toggle(
-                            "flipped"
-                        );
-                    }
-                }
-            );
+                </div>
 
+            </div>
+        `;
 
-            grid.appendChild(container);
+        container.addEventListener("click", (event) => {
 
-        }
-    );
+            if (event.target.tagName !== "A") {
+
+                const card = document.getElementById(`card-${index}`);
+
+                card.classList.toggle("flipped");
+
+            }
+
+        });
+
+        grid.appendChild(container);
+
+    });
 
 
     /* =========================================================
        MUSIC
     ========================================================= */
 
-    const music =
-        document.getElementById(
-            "bg-music"
-        );
+    const music = document.getElementById("bg-music");
+    const musicButton = document.getElementById("music-button");
 
+    musicButton.addEventListener("click", async () => {
 
-    const musicButton =
-        document.getElementById(
-            "music-button"
-        );
+        try {
 
+            if (music.paused) {
 
-    musicButton.addEventListener(
-        "click",
-        async () => {
+                await music.play();
 
-            try {
+                musicButton.textContent = "⏸️ Pause Music";
 
-                if (music.paused) {
+            } else {
 
-                    await music.play();
+                music.pause();
 
-                    musicButton.textContent =
-                        "⏸️ Pause Music";
-
-                }
-
-                else {
-
-                    music.pause();
-
-                    musicButton.textContent =
-                        "🎵 Play Music";
-
-                }
+                musicButton.textContent = "🎵 Play Music";
 
             }
 
-            catch (error) {
+        } catch (error) {
 
-                console.error(
-                    "Music could not be played:",
-                    error
-                );
+            console.error("Music could not be played:", error);
 
-                alert(
-                    "The music could not be played. " +
-                    "Please check that music/AHOF.m4a exists."
-                );
-            }
+            alert(
+                "The music could not be played. " +
+                "Please check that the music file is uploaded to the repository."
+            );
 
         }
-    );
+
+    });
 
 
     /* =========================================================
@@ -1881,108 +929,47 @@
     ========================================================= */
 
     const starColors = [
-
         "#ffffff",
         "#fff3cd",
         "#ffeaa7",
         "#fdcb6e",
         "#f1c40f"
-
     ];
-
 
     function createGlitterParticle() {
 
-        const glitter =
-            document.createElement("div");
+        const glitter = document.createElement("div");
 
+        glitter.className = "glitter";
 
-        glitter.className =
-            "glitter";
-
-
-        const size =
-            Math.random() * 6 + 2;
-
-
-        const leftPosition =
-            Math.random() *
-            window.innerWidth;
-
-
-        const duration =
-            Math.random() * 5 + 4;
-
+        const size = Math.random() * 6 + 2;
+        const leftPosition = Math.random() * window.innerWidth;
+        const duration = Math.random() * 5 + 4;
 
         const chosenColor =
             starColors[
-                Math.floor(
-                    Math.random() *
-                    starColors.length
-                )
+                Math.floor(Math.random() * starColors.length)
             ];
 
+        glitter.style.width = `${size}px`;
+        glitter.style.height = `${size}px`;
+        glitter.style.left = `${leftPosition}px`;
+        glitter.style.top = "-10px";
+        glitter.style.backgroundColor = chosenColor;
+        glitter.style.boxShadow = `0 0 ${size * 3}px ${chosenColor}`;
+        glitter.style.animationDuration = `${duration}s`;
 
-        glitter.style.width =
-            `${size}px`;
+        document.body.appendChild(glitter);
 
-
-        glitter.style.height =
-            `${size}px`;
-
-
-        glitter.style.left =
-            `${leftPosition}px`;
-
-
-        glitter.style.top =
-            "-10px";
-
-
-        glitter.style.backgroundColor =
-            chosenColor;
-
-
-        glitter.style.boxShadow =
-            `0 0 ${size * 3}px ${chosenColor}`;
-
-
-        glitter.style.animationDuration =
-            `${duration}s`;
-
-
-        document.body.appendChild(
-            glitter
-        );
-
-
-        setTimeout(
-            () => glitter.remove(),
-            duration * 1000
-        );
+        setTimeout(() => glitter.remove(), duration * 1000);
 
     }
 
-
-    /* Initial glitter */
-
-    for (
-        let i = 0;
-        i < 50;
-        i++
-    ) {
-
+    for (let i = 0; i < 50; i++) {
         createGlitterParticle();
-
     }
 
-
-    /* Continuous glitter */
-
-    setInterval(
-        createGlitterParticle,
-        150
-    );
+    setInterval(createGlitterParticle, 150);
 
 
     /* =========================================================
@@ -1991,167 +978,89 @@
 
     function createSparkleBurst() {
 
-        const sparkle =
-            document.createElement("div");
+        const sparkle = document.createElement("div");
 
+        sparkle.className = "sparkle-burst";
 
-        sparkle.className =
-            "sparkle-burst";
+        sparkle.textContent = "✦";
 
+        sparkle.style.left = `${Math.random() * 95}vw`;
+        sparkle.style.top = `${Math.random() * 90}vh`;
 
-        sparkle.textContent =
-            "✦";
+        document.body.appendChild(sparkle);
 
-
-        sparkle.style.left =
-            `${Math.random() * 95}vw`;
-
-
-        sparkle.style.top =
-            `${Math.random() * 90}vh`;
-
-
-        document.body.appendChild(
-            sparkle
-        );
-
-
-        setTimeout(
-            () => sparkle.remove(),
-            1400
-        );
+        setTimeout(() => sparkle.remove(), 1400);
 
     }
 
-
-    setInterval(
-        createSparkleBurst,
-        900
-    );
+    setInterval(createSparkleBurst, 900);
 
 
     /* =========================================================
        LIVE CHAT
     ========================================================= */
 
-    const chat =
-        document.getElementById(
-            "live-chat"
-        );
+    const chat = document.getElementById("live-chat");
+    const chatToggle = document.getElementById("chat-toggle");
 
+    chatToggle.addEventListener("click", () => {
 
-    const chatToggle =
-        document.getElementById(
-            "chat-toggle"
-        );
+        chat.classList.toggle("collapsed");
 
+        if (chat.classList.contains("collapsed")) {
 
-    chatToggle.addEventListener(
-        "click",
-        () => {
+            chatToggle.textContent = "💬";
+            chatToggle.title = "Open chat";
 
-            chat.classList.toggle(
-                "collapsed"
-            );
+        } else {
 
-
-            if (
-                chat.classList.contains(
-                    "collapsed"
-                )
-            ) {
-
-                chatToggle.textContent =
-                    "💬";
-
-                chatToggle.title =
-                    "Open chat";
-
-            }
-
-            else {
-
-                chatToggle.textContent =
-                    "−";
-
-                chatToggle.title =
-                    "Collapse chat";
-
-            }
+            chatToggle.textContent = "−";
+            chatToggle.title = "Collapse chat";
 
         }
-    );
+
+    });
 
 
     /* =========================================================
        LOCAL CHAT STORAGE
+       NOTE: Live Chat remains localStorage exactly as before.
     ========================================================= */
 
-    const chatForm =
-        document.getElementById(
-            "chat-form"
-        );
-
-
-    const chatName =
-        document.getElementById(
-            "chat-name"
-        );
-
-
-    const chatText =
-        document.getElementById(
-            "chat-text"
-        );
-
-
-    const chatMessages =
-        document.getElementById(
-            "chat-messages"
-        );
-
+    const chatForm = document.getElementById("chat-form");
+    const chatName = document.getElementById("chat-name");
+    const chatText = document.getElementById("chat-text");
+    const chatMessages = document.getElementById("chat-messages");
 
     let chatComments = [];
-
 
     try {
 
         chatComments =
             JSON.parse(
-                localStorage.getItem(
-                    "hallOfFameLiveChat"
-                )
+                localStorage.getItem("hallOfFameLiveChat")
             ) || [];
 
-    }
-
-    catch (error) {
+    } catch (error) {
 
         chatComments = [];
 
     }
 
-
     function saveChat() {
 
         localStorage.setItem(
             "hallOfFameLiveChat",
-            JSON.stringify(
-                chatComments
-            )
+            JSON.stringify(chatComments)
         );
 
     }
-
 
     function displayChat() {
 
         chatMessages.innerHTML = "";
 
-
-        if (
-            chatComments.length === 0
-        ) {
+        if (chatComments.length === 0) {
 
             chatMessages.innerHTML = `
 
@@ -2172,169 +1081,290 @@
 
         }
 
+        chatComments.forEach((comment) => {
 
-        chatComments.forEach(
-            (comment) => {
+            const message = document.createElement("div");
 
-                const message =
-                    document.createElement(
-                        "div"
-                    );
+            message.className = "chat-message";
 
+            message.innerHTML = `
 
-                message.className =
-                    "chat-message";
+                <div class="chat-message-name">
+                    ✨ ${escapeHTML(comment.name)}
+                </div>
 
+                <div class="chat-message-text">
+                    ${escapeHTML(comment.message)}
+                </div>
 
-                message.innerHTML = `
+                <div class="chat-message-date">
+                    ${escapeHTML(comment.date)}
+                </div>
 
-                    <div
-                        class="chat-message-name">
+            `;
 
-                        ✨ ${escapeHTML(
-                            comment.name
-                        )}
+            chatMessages.appendChild(message);
 
-                    </div>
+        });
 
-
-                    <div
-                        class="chat-message-text">
-
-                        ${escapeHTML(
-                            comment.message
-                        )}
-
-                    </div>
-
-
-                    <div
-                        class="chat-message-date">
-
-                        ${escapeHTML(
-                            comment.date
-                        )}
-
-                    </div>
-
-                `;
-
-
-                chatMessages.appendChild(
-                    message
-                );
-
-            }
-        );
-
-
-        chatMessages.scrollTop =
-            chatMessages.scrollHeight;
+        chatMessages.scrollTop = chatMessages.scrollHeight;
 
     }
 
-
     function escapeHTML(value) {
 
-        const div =
-            document.createElement(
-                "div"
-            );
+        const div = document.createElement("div");
 
-
-        div.textContent =
-            value;
-
+        div.textContent = String(value ?? "");
 
         return div.innerHTML;
 
     }
 
+    chatForm.addEventListener("submit", (event) => {
 
-    chatForm.addEventListener(
-        "submit",
-        (event) => {
+        event.preventDefault();
 
-            event.preventDefault();
+        const name = chatName.value.trim();
+        const message = chatText.value.trim();
+
+        if (!name || !message) {
+            return;
+        }
+
+        chatComments.push({
+
+            name: name,
+            message: message,
+            date: new Date().toLocaleString()
+
+        });
+
+        saveChat();
+        displayChat();
+        chatForm.reset();
+
+    });
+
+    displayChat();
 
 
-            const name =
-                chatName.value.trim();
+    /* =========================================================
+       SUPABASE FEEDBACK
+       FIXED VERSION
+    ========================================================= */
+
+    const SUPABASE_URL =
+        "https://oayeqcemcyfwrtjpfavc.supabase.co";
+
+    const SUPABASE_KEY =
+        "sb_publishable_xv9K0th6XbPNgZ2c8Zan6Q_EZZ7ebZ5";
+
+    const feedbackForm =
+        document.getElementById("feedback-form");
+
+    const feedbackName =
+        document.getElementById("feedback-name");
+
+    const feedbackMessage =
+        document.getElementById("feedback-message");
+
+    const feedbackList =
+        document.getElementById("feedback-list");
 
 
-            const message =
-                chatText.value.trim();
+    /* =========================================================
+       LOAD FEEDBACK FROM SUPABASE
+    ========================================================= */
+
+    async function loadFeedback() {
+
+        feedbackList.innerHTML = `
+
+            <div class="feedback-message">
+                ✨ Loading feedback...
+            </div>
+
+        `;
+
+        try {
+
+            const response = await fetch(
+
+                SUPABASE_URL +
+                "/rest/v1/Feedback" +
+                "?select=id,name,message,created_at" +
+                "&order=created_at.desc",
+
+                {
+                    method: "GET",
+
+                    headers: {
+
+                        "apikey": SUPABASE_KEY,
+
+                        "Authorization":
+                            "Bearer " + SUPABASE_KEY
+
+                    }
+
+                }
+
+            );
 
 
-            if (
-                !name ||
-                !message
-            ) {
+            if (!response.ok) {
+
+                const errorText =
+                    await response.text();
+
+                throw new Error(
+                    `Could not load feedback. ${errorText}`
+                );
+
+            }
+
+
+            const feedback =
+                await response.json();
+
+
+            feedbackList.innerHTML = "";
+
+
+            if (!Array.isArray(feedback) || feedback.length === 0) {
+
+                feedbackList.innerHTML = `
+
+                    <div class="feedback-message">
+
+                        ✨ No feedback yet.
+                        Be the first to share your thoughts!
+
+                    </div>
+
+                `;
 
                 return;
 
             }
 
 
-            chatComments.push({
+            const title =
+                document.createElement("h3");
 
-                name: name,
+            title.className =
+                "feedback-list-title";
 
-                message: message,
+            title.textContent =
+                "💛 Community Feedback";
 
-                date:
-                    new Date()
-                        .toLocaleString()
+            feedbackList.appendChild(title);
+
+
+            feedback.forEach((comment) => {
+
+                const item =
+                    document.createElement("div");
+
+                item.className =
+                    "feedback-item";
+
+
+                const name =
+                    document.createElement("div");
+
+                name.className =
+                    "feedback-item-name";
+
+                name.textContent =
+                    `✨ ${comment.name || "Anonymous"}`;
+
+
+                const message =
+                    document.createElement("div");
+
+                message.className =
+                    "feedback-item-text";
+
+                message.textContent =
+                    comment.message || "";
+
+
+                const date =
+                    document.createElement("div");
+
+                date.className =
+                    "feedback-item-date";
+
+
+                if (comment.created_at) {
+
+                    date.textContent =
+                        new Date(
+                            comment.created_at
+                        ).toLocaleString();
+
+                }
+
+
+                item.appendChild(name);
+                item.appendChild(message);
+
+                if (comment.created_at) {
+                    item.appendChild(date);
+                }
+
+                feedbackList.appendChild(item);
 
             });
 
+        }
 
-            saveChat();
+        catch (error) {
 
-            displayChat();
+            console.error(
+                "Feedback loading error:",
+                error
+            );
 
-            chatForm.reset();
+            feedbackList.innerHTML = `
+
+                <div class="feedback-message">
+
+                    ⚠️ Unable to load feedback right now.
+
+                    <br><br>
+
+                    Please refresh the page and try again.
+
+                </div>
+
+            `;
 
         }
-    );
 
-
-    displayChat();
+    }
 
 
     /* =========================================================
-       FEEDBACK
+       SUBMIT FEEDBACK TO SUPABASE
     ========================================================= */
-
-    const feedbackForm =
-        document.getElementById(
-            "feedback-form"
-        );
-
 
     feedbackForm.addEventListener(
         "submit",
-        (event) => {
+        async (event) => {
 
             event.preventDefault();
 
-
             const name =
-                document.getElementById(
-                    "feedback-name"
-                ).value.trim();
-
+                feedbackName.value.trim();
 
             const message =
-                document.getElementById(
-                    "feedback-message"
-                ).value.trim();
+                feedbackMessage.value.trim();
 
 
-            if (
-                !name ||
-                !message
-            ) {
+            if (!name || !message) {
 
                 alert(
                     "Please complete both fields."
@@ -2345,44 +1375,121 @@
             }
 
 
-            const feedback =
-                JSON.parse(
-                    localStorage.getItem(
-                        "hallOfFameFeedback"
-                    ) || "[]"
+            const submitButton =
+                feedbackForm.querySelector(
+                    "button[type='submit']"
                 );
 
 
-            feedback.push({
+            submitButton.disabled = true;
 
-                name: name,
-
-                message: message,
-
-                date:
-                    new Date()
-                        .toLocaleString()
-
-            });
+            submitButton.textContent =
+                "Sending...";
 
 
-            localStorage.setItem(
-                "hallOfFameFeedback",
-                JSON.stringify(
-                    feedback
-                )
-            );
+            try {
+
+                const response =
+                    await fetch(
+
+                        SUPABASE_URL +
+                        "/rest/v1/Feedback",
+
+                        {
+                            method: "POST",
+
+                            headers: {
+
+                                "apikey":
+                                    SUPABASE_KEY,
+
+                                "Authorization":
+                                    "Bearer " +
+                                    SUPABASE_KEY,
+
+                                "Content-Type":
+                                    "application/json",
+
+                                "Prefer":
+                                    "return=representation"
+
+                            },
+
+                            body:
+                                JSON.stringify({
+                                    name: name,
+                                    message: message
+                                })
+
+                        }
+
+                    );
 
 
-            feedbackForm.reset();
+                if (!response.ok) {
+
+                    const errorText =
+                        await response.text();
+
+                    throw new Error(
+                        errorText
+                    );
+
+                }
 
 
-            alert(
-                "Thank you for your feedback! ✨"
-            );
+                feedbackForm.reset();
+
+
+                alert(
+                    "Thank you for your feedback! ✨"
+                );
+
+
+                /*
+                 * Immediately reload the public
+                 * feedback list from Supabase.
+                 */
+
+                await loadFeedback();
+
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Feedback submission error:",
+                    error
+                );
+
+
+                alert(
+                    "Sorry, your feedback could not be submitted. " +
+                    "Please try again."
+                );
+
+            }
+
+            finally {
+
+                submitButton.disabled =
+                    false;
+
+                submitButton.textContent =
+                    "💛 Submit Feedback";
+
+            }
 
         }
     );
+
+
+    /* =========================================================
+       INITIAL FEEDBACK LOAD
+    ========================================================= */
+
+    loadFeedback();
 
 </script>
 
