@@ -34,8 +34,114 @@ a{color:#9a5f7d;text-decoration:none}a:hover{color:#70445d;text-decoration:under
 .guestbook input,.guestbook textarea{width:100%;background:#fffaf0;border:1px solid #c0a0ac;color:#514b4f;padding:5px;font:10px Tahoma;margin-bottom:5px}
 .guestbook textarea{min-height:75px;resize:vertical}.guestbook button{border:1px solid #b27a92;background:#b77a96;color:#fffaf5;padding:5px 9px;font-size:10px;cursor:pointer}
 .guestbook-entry{margin-top:7px;padding:6px;border:1px dotted #c6a5b2;background:#f0e4d5}.guestbook-entry b{color:#754d61}
-#feedbackList{max-height:150px;overflow-y:auto;margin-top:6px}#feedbackStatus,#chatStatus{min-height:13px}#chatList{scrollbar-width:thin}
-.chat-entry{margin-bottom:6px;padding:6px;border:1px dotted #c6a5b2;background:#f0e4d5}.chat-entry b{color:#754d61}.chat-entry .chat-time{font-size:8px;color:#96818b;margin-top:2px}
+#feedbackList{max-height:150px;overflow-y:auto;margin-top:6px}#feedbackStatus,#chatStatus{min-height:13px}#chatList{
+  scrollbar-width:thin;
+  height:300px !important;
+  overflow-y:auto;
+  padding:10px 5px 14px;
+  background:
+    radial-gradient(circle at 15% 20%,#ff6fa522 0 2px,transparent 3px),
+    radial-gradient(circle at 85% 75%,#ff9dcc1c 0 2px,transparent 3px),
+    #0d0914;
+  border:0;
+  border-radius:4px;
+  box-shadow:inset 0 0 22px #0008;
+}
+.chat-entry{
+  position:relative;
+  width:fit-content;
+  max-width:92%;
+  margin:12px 0 18px 8px;
+  padding:10px 12px 8px;
+  border:1px solid #b875a3;
+  border-radius:7px;
+  background:linear-gradient(135deg,#221425eF,#130d1beF);
+  color:#f7eaf4;
+  box-shadow:
+    0 0 7px #ff67b866,
+    inset 0 0 8px #ff7fbb1c;
+  font-size:10px;
+  line-height:1.4;
+}
+.chat-entry:before{
+  content:"✿";
+  position:absolute;
+  left:-7px;
+  bottom:-9px;
+  color:#ff78b8;
+  font-size:15px;
+  text-shadow:0 0 7px #ff4fa8;
+}
+.chat-entry:after{
+  content:"✦";
+  position:absolute;
+  right:-7px;
+  top:-9px;
+  color:#fff;
+  font-size:11px;
+  text-shadow:0 0 7px #ff8dcc;
+}
+.chat-entry b{
+  display:inline-block;
+  position:absolute;
+  left:8px;
+  top:-10px;
+  padding:3px 9px;
+  border:1px solid #d98bb6;
+  border-radius:4px;
+  background:linear-gradient(#f2a7ca,#b85e91);
+  color:#fff;
+  font-size:8px;
+  font-weight:bold;
+  letter-spacing:.3px;
+  text-shadow:0 1px 2px #70284d;
+  box-shadow:0 0 7px #ff6fb255;
+  white-space:nowrap;
+}
+.chat-entry b:before{
+  content:"♥ ";
+  color:#ffdeeb;
+}
+.chat-entry .chat-time{
+  font-size:7px;
+  color:#c99ab8;
+  margin-top:4px;
+  text-align:right;
+}
+#livechat .box-title{
+  background:linear-gradient(90deg,#3a1d32,#211522);
+  color:#ffd8ea;
+}
+#livechat .box-body{
+  background:#130d18;
+  color:#e7d8e3;
+}
+#livechat .tiny{
+  color:#b997aa;
+}
+#livechat .guestbook input,
+#livechat .guestbook textarea{
+  background:#211526;
+  border:1px solid #9b6286;
+  color:#f7eaf4;
+  border-radius:5px;
+  box-shadow:inset 0 0 7px #0006;
+}
+#livechat .guestbook input::placeholder,
+#livechat .guestbook textarea::placeholder{
+  color:#a9879c;
+}
+#livechat .guestbook button{
+  border:1px solid #d17eaa;
+  background:linear-gradient(#e38bb7,#a64d7e);
+  border-radius:5px;
+  box-shadow:0 0 8px #ff67b844;
+}
+#livechat .guestbook button:hover{
+  filter:brightness(1.15);
+  box-shadow:0 0 12px #ff67b866;
+}
+
 .mini-photo{width:100%;aspect-ratio:1/1;object-fit:cover;border:1px solid #b890a0;margin-bottom:4px}
 .right-links a{display:block;padding:4px 0;border-bottom:1px dotted #c2a8b2;font-size:10px}.footer{text-align:center;color:#82777b;font-size:9px;padding:14px}
 .spark{position:fixed;z-index:1000;pointer-events:none;color:#f7cfe1;animation:spark 1.2s ease-out forwards;text-shadow:0 0 6px #ff7eb2}
@@ -182,13 +288,13 @@ a{color:#9a5f7d;text-decoration:none}a:hover{color:#70445d;text-decoration:under
   </div>
 
   <div class="box" id="livechat">
-    <div class="box-title">Live Chat ☕</div>
+    <div class="box-title">💗 LIVE CHAT ✦</div>
     <div class="box-body guestbook">
-      <div class="tiny">everyone's messages appear here ♥</div>
-      <div id="chatList" style="max-height:280px;overflow-y:auto;margin:6px 0"></div>
-      <input id="chatName" maxlength="40" placeholder="your name">
-      <textarea id="chatMsg" maxlength="300" placeholder="say something..."></textarea>
-      <button id="chatSend">SEND CHAT</button>
+      <div class="tiny" style="margin-bottom:5px;color:#c995b2">♡ everyone is welcome here ♡</div>
+      <div id="chatList" style="height:280px;overflow-y:auto;margin:6px 0"></div>
+      <input id="chatName" maxlength="40" placeholder="Your name / username">
+      <textarea id="chatMsg" maxlength="300" placeholder="Type a message..." style="min-height:55px"></textarea>
+      <button id="chatSend">SEND ♡</button>
       <div id="chatStatus" class="tiny" style="margin-top:5px"></div>
     </div>
   </div>
@@ -198,6 +304,20 @@ a{color:#9a5f7d;text-decoration:none}a:hover{color:#70445d;text-decoration:under
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const music=document.getElementById('music'),musicBtn=document.getElementById('musicBtn');
+
+// Remember the chat name on this browser so it only has to be entered once.
+const chatNameInput=document.getElementById('chatName');
+const savedChatName=localStorage.getItem('ahofChatName');
+if(savedChatName){
+  chatNameInput.value=savedChatName;
+  chatNameInput.style.display='none';
+  const note=document.createElement('div');
+  note.id='chatNameNote';
+  note.className='tiny';
+  note.style.marginBottom='5px';
+  note.textContent='Chatting as '+savedChatName+' ♥';
+  chatNameInput.parentNode.insertBefore(note,chatNameInput);
+}
 musicBtn.addEventListener('click',async()=>{if(music.paused){try{await music.play();musicBtn.textContent='❚❚ PAUSE MUSIC'}catch(e){alert('Please make sure AHOF_-_Butterfly_(mp3.pm).mp3 is in the same folder as this HTML file.')}}else{music.pause();musicBtn.textContent='▶ PLAY MUSIC'}});
 const nameInput=document.getElementById('gbName'),msgInput=document.getElementById('gbMsg'),list=document.getElementById('gbList');
 function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
@@ -212,7 +332,7 @@ function sbHeaders(){return {'apikey':SUPABASE_KEY,'Authorization':'Bearer '+SUP
 async function loadFeedback(){try{const r=await fetch(`${SUPABASE_URL}/rest/v1/Feedback?select=*&order=created_at.desc&limit=6`,{headers:sbHeaders()});if(!r.ok)throw 0;const rows=await r.json();feedbackList.innerHTML=rows.length?'':'<div class="tiny" style="margin-top:6px">no feedback yet ♥</div>';rows.forEach(x=>{const name=x.name||x.Name||'Anonymous',msg=x.message||x.Message||x.feedback||x.Feedback||x.comment||'',date=x.created_at||x.createdAt||'';feedbackList.insertAdjacentHTML('beforeend',`<div class="guestbook-entry"><b>${esc(name)}</b><br>${esc(msg)}<div class="tiny">${date?esc(new Date(date).toLocaleString()):''}</div></div>`)})}catch(e){feedbackStatus.textContent='Feedback is temporarily unavailable.'}}
 document.getElementById('feedbackSend').addEventListener('click',async()=>{const name=document.getElementById('feedbackName').value.trim(),msg=document.getElementById('feedbackMsg').value.trim();if(!name||!msg){feedbackStatus.textContent='Please enter your name and feedback.';return}feedbackStatus.textContent='sending...';try{const r=await fetch(`${SUPABASE_URL}/rest/v1/Feedback`,{method:'POST',headers:sbHeaders(),body:JSON.stringify({name:name,message:msg})});if(!r.ok)throw 0;document.getElementById('feedbackName').value='';document.getElementById('feedbackMsg').value='';feedbackStatus.textContent='Thank you! ♥';loadFeedback()}catch(e){feedbackStatus.textContent='Could not send feedback. Please try again.'}});
 async function loadChat(){try{const r=await fetch(`${SUPABASE_URL}/rest/v1/LiveChat?select=*&order=created_at.desc&limit=50`,{headers:sbHeaders()});if(!r.ok)throw 0;const rows=(await r.json()).reverse();chatList.innerHTML=rows.length?'':'<div class="tiny">no messages yet... start the chat ♥</div>';rows.forEach(x=>{const name=x.name||x.Name||'Anonymous',msg=x.message||x.Message||x.chat||x.Chat||'',date=x.created_at||x.createdAt||'';chatList.insertAdjacentHTML('beforeend',`<div class="chat-entry" data-chat-id="${esc(String(x.id||''))}"><b>${esc(name)}</b>: ${esc(msg)}<div class="chat-time">${date?esc(new Date(date).toLocaleString()):''}</div></div>`)});chatList.scrollTop=chatList.scrollHeight}catch(e){chatStatus.textContent='Live chat is temporarily unavailable.'}}
-document.getElementById('chatSend').addEventListener('click',async()=>{const name=document.getElementById('chatName').value.trim(),msg=document.getElementById('chatMsg').value.trim();if(!name||!msg){chatStatus.textContent='Please enter your name and message.';return}chatStatus.textContent='sending...';try{const r=await fetch(`${SUPABASE_URL}/rest/v1/LiveChat`,{method:'POST',headers:sbHeaders(),body:JSON.stringify({name:name,message:msg})});if(!r.ok)throw 0;document.getElementById('chatMsg').value='';chatStatus.textContent='sent ♥';loadChat()}catch(e){chatStatus.textContent='Could not send chat. Please try again.'}});
+document.getElementById('chatSend').addEventListener('click',async()=>{const name=document.getElementById('chatName').value.trim(),msg=document.getElementById('chatMsg').value.trim();if(!name||!msg){chatStatus.textContent='Please enter your name and message.';return}chatStatus.textContent='sending...';try{const r=await fetch(`${SUPABASE_URL}/rest/v1/LiveChat`,{method:'POST',headers:sbHeaders(),body:JSON.stringify({name:name,message:msg})});if(!r.ok)throw 0;localStorage.setItem('ahofChatName',name);chatNameInput.style.display='none';if(!document.getElementById('chatNameNote')){const note=document.createElement('div');note.id='chatNameNote';note.className='tiny';note.style.marginBottom='5px';note.textContent='Chatting as '+name+' ♥';chatNameInput.parentNode.insertBefore(note,chatNameInput)}document.getElementById('chatMsg').value='';chatStatus.textContent='sent ♥';loadChat()}catch(e){chatStatus.textContent='Could not send chat. Please try again.'}});
 loadFeedback();loadChat();
 supabaseClient.channel('ahof-live-chat-room').on('postgres_changes',{event:'INSERT',schema:'public',table:'LiveChat'},payload=>{const x=payload.new||{},name=x.name||'Anonymous',msg=x.message||'',date=x.created_at||'';if(!msg)return;const empty=chatList.querySelector('.tiny');if(empty)chatList.innerHTML='';if(x.id&&chatList.querySelector(`[data-chat-id="${String(x.id)}"]`))return;chatList.insertAdjacentHTML('beforeend',`<div class="chat-entry" data-chat-id="${esc(String(x.id||''))}"><b>${esc(name)}</b>: ${esc(msg)}<div class="chat-time">${date?esc(new Date(date).toLocaleString()):''}</div></div>`);chatList.scrollTop=chatList.scrollHeight}).subscribe();
 setInterval(loadChat,15000);setInterval(loadFeedback,15000);
