@@ -1,1502 +1,222 @@
-<!DOCTYPE html>
-
+<!doctype html>
 <html lang="en">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0">
-
-<title>ALL-Time HALL OF FAMER</title>
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ALL-Time HALL OF FAMER // retro profile</title>
 <style>
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-
-    body {
-        margin: 0;
-        padding: 20px;
-        font-family: Arial, sans-serif;
-        color: white;
-        text-align: center;
-        background:
-            linear-gradient(rgba(3, 7, 25, 0.35), rgba(3, 7, 25, 0.45)),
-            url("https://i.pinimg.com/736x/d0/14/a3/d014a30be212765c60f815e42fd8cbae.jpg");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        overflow-x: hidden;
-        min-height: 100vh;
-    }
-
-    body::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        pointer-events: none;
-        z-index: 0;
-        background:
-            radial-gradient(circle at 20% 20%, rgba(241,196,15,0.10), transparent 30%),
-            radial-gradient(circle at 80% 70%, rgba(255,255,255,0.08), transparent 35%);
-    }
-
-    header { margin-bottom: 25px; position: relative; z-index: 10; }
-
-    .logo {
-        width: min(280px, 85%);
-        height: auto;
-        border-radius: 20px;
-        filter: drop-shadow(0 5px 20px rgba(0,0,0,0.8));
-    }
-
-    header h1 {
-        margin-top: 15px;
-        color: white;
-        font-size: 2.4rem;
-        letter-spacing: 2px;
-        text-shadow: 0 3px 10px rgba(0,0,0,0.95), 0 0 20px rgba(241,196,15,0.25);
-    }
-
-    .music-box {
-        position: relative;
-        z-index: 10;
-        width: fit-content;
-        margin: 0 auto 35px;
-        padding: 10px 18px;
-        border-radius: 30px;
-        background: rgba(0,0,0,0.40);
-        border: 1px solid rgba(255,255,255,0.25);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        box-shadow: 0 5px 25px rgba(0,0,0,0.4);
-    }
-
-    .music-button {
-        border: none;
-        border-radius: 25px;
-        padding: 11px 22px;
-        cursor: pointer;
-        font-weight: bold;
-        color: #1b1b1b;
-        background: linear-gradient(135deg, #fff3cd, #f1c40f);
-        transition: 0.25s ease;
-    }
-
-    .music-button:hover {
-        transform: translateY(-2px) scale(1.03);
-        box-shadow: 0 5px 25px rgba(241,196,15,0.55);
-    }
-
-    .main-content {
-        max-width: 1050px;
-        margin: 0 auto;
-        position: relative;
-        z-index: 10;
-        padding-bottom: 100px;
-    }
-
-    .grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 22px;
-        max-width: 1000px;
-        margin: 0 auto;
-    }
-
-    .card-container {
-        width: 100%;
-        height: 310px;
-        perspective: 1000px;
-        cursor: pointer;
-    }
-
-    .card {
-        width: 100%;
-        height: 100%;
-        position: relative;
-        transform-style: preserve-3d;
-        transition: transform 0.65s cubic-bezier(.2,.8,.2,1);
-    }
-
-    .card.flipped { transform: rotateY(180deg); }
-
-    .card-face {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        backface-visibility: hidden;
-        -webkit-backface-visibility: hidden;
-        border-radius: 18px;
-        background: linear-gradient(135deg, rgba(255,255,255,0.14), rgba(255,255,255,0.035));
-        border: 1px solid rgba(255,255,255,0.22);
-        box-shadow: 0 12px 35px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.08);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-        color: white;
-        overflow: hidden;
-    }
-
-    .card-face::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-        background: radial-gradient(circle at 50% 0%, rgba(241,196,15,0.12), transparent 50%);
-    }
-
-    .card-face img {
-        width: 115px;
-        height: 115px;
-        border-radius: 50%;
-        object-fit: cover;
-        margin-bottom: 13px;
-        border: 3px solid rgba(255,255,255,0.55);
-        box-shadow: 0 5px 20px rgba(0,0,0,0.65), 0 0 20px rgba(241,196,15,0.15);
-    }
-
-    .card-face h3 {
-        margin: 5px 0;
-        font-size: 1.2rem;
-        text-shadow: 0 2px 7px rgba(0,0,0,0.95);
-        position: relative;
-    }
-
-    .card-face p {
-        margin: 5px 0;
-        font-size: 0.9rem;
-        line-height: 1.5;
-        text-shadow: 0 2px 6px rgba(0,0,0,0.9);
-        position: relative;
-    }
-
-    .card-back { transform: rotateY(180deg); }
-    .card-back h3 { color: #f1c40f; font-size: 1.3rem; }
-
-    .wiki-link {
-        color: white;
-        text-decoration: none;
-        font-weight: bold;
-        text-shadow: 0 2px 6px rgba(0,0,0,0.9);
-    }
-
-    .wiki-link:hover {
-        color: #f1c40f;
-        text-decoration: underline;
-    }
-
-    .glitter {
-        position: fixed;
-        background: white;
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 2;
-        animation-name: fall;
-        animation-timing-function: linear;
-        animation-fill-mode: forwards;
-    }
-
-    @keyframes fall {
-        0% { transform: translateY(-30px) scale(0.2) rotate(0deg); opacity: 0; }
-        10% { opacity: 1; }
-        50% { opacity: 1; }
-        90% { opacity: 0.9; }
-        100% { transform: translateY(105vh) scale(1.4) rotate(180deg); opacity: 0; }
-    }
-
-    .sparkle-burst {
-        position: fixed;
-        pointer-events: none;
-        z-index: 3;
-        color: #fff3cd;
-        font-size: 20px;
-        text-shadow: 0 0 8px #fff, 0 0 18px #f1c40f, 0 0 30px #f1c40f;
-        animation: sparkleBurst 1.4s ease-out forwards;
-    }
-
-    @keyframes sparkleBurst {
-        0% { opacity: 0; transform: scale(0.2) rotate(0deg); }
-        20% { opacity: 1; transform: scale(1.3) rotate(45deg); }
-        100% { opacity: 0; transform: scale(0.3) rotate(180deg); }
-    }
-
-    .live-chat {
-        position: fixed;
-        left: 18px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 300px;
-        max-height: 610px;
-        z-index: 50;
-        display: flex;
-        flex-direction: column;
-        border-radius: 22px;
-        overflow: hidden;
-        background: linear-gradient(145deg, rgba(5,10,30,0.82), rgba(15,15,35,0.72));
-        border: 1px solid rgba(255,255,255,0.22);
-        box-shadow: 0 20px 55px rgba(0,0,0,0.6), 0 0 35px rgba(241,196,15,0.10);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-    }
-
-    .chat-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 14px 16px;
-        background: linear-gradient(135deg, rgba(241,196,15,0.22), rgba(255,255,255,0.06));
-        border-bottom: 1px solid rgba(255,255,255,0.15);
-    }
-
-    .chat-title { margin: 0; font-size: 1rem; color: white; }
-
-    .chat-status {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        font-size: 0.7rem;
-        color: rgba(255,255,255,0.7);
-    }
-
-    .online-dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: #2ecc71;
-        box-shadow: 0 0 10px #2ecc71;
-    }
-
-    .chat-toggle {
-        border: none;
-        background: rgba(255,255,255,0.10);
-        color: white;
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        cursor: pointer;
-        font-size: 1rem;
-    }
-
-    .chat-body {
-        display: flex;
-        flex-direction: column;
-        min-height: 0;
-        overflow: hidden;
-    }
-
-    .chat-messages {
-        padding: 12px;
-        max-height: 350px;
-        overflow-y: auto;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .chat-messages::-webkit-scrollbar { width: 5px; }
-
-    .chat-messages::-webkit-scrollbar-thumb {
-        background: rgba(241,196,15,0.45);
-        border-radius: 10px;
-    }
-
-    .chat-message {
-        text-align: left;
-        padding: 10px 12px;
-        border-radius: 14px;
-        background: rgba(255,255,255,0.07);
-        border: 1px solid rgba(255,255,255,0.10);
-        animation: chatAppear 0.35s ease;
-    }
-
-    @keyframes chatAppear {
-        from { opacity: 0; transform: translateY(8px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    .chat-message-name {
-        color: #f1c40f;
-        font-weight: bold;
-        font-size: 0.82rem;
-        margin-bottom: 4px;
-    }
-
-    .chat-message-text {
-        color: rgba(255,255,255,0.9);
-        font-size: 0.82rem;
-        line-height: 1.45;
-        white-space: pre-wrap;
-        overflow-wrap: anywhere;
-    }
-
-    .chat-message-date {
-        color: rgba(255,255,255,0.4);
-        font-size: 0.65rem;
-        margin-top: 5px;
-    }
-
-    .chat-empty {
-        color: rgba(255,255,255,0.5);
-        font-size: 0.8rem;
-        padding: 25px 10px;
-        line-height: 1.5;
-    }
-
-    .chat-form {
-        padding: 12px;
-        border-top: 1px solid rgba(255,255,255,0.12);
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-    }
-
-    .chat-input {
-        width: 100%;
-        border: 1px solid rgba(255,255,255,0.18);
-        border-radius: 10px;
-        background: rgba(0,0,0,0.25);
-        color: white;
-        padding: 9px 10px;
-        outline: none;
-        font-family: Arial, sans-serif;
-        font-size: 0.82rem;
-    }
-
-    .chat-input::placeholder { color: rgba(255,255,255,0.5); }
-
-    .chat-input:focus { border-color: rgba(241,196,15,0.7); }
-
-    .chat-text { min-height: 65px; resize: vertical; }
-
-    .chat-send {
-        border: none;
-        border-radius: 18px;
-        padding: 9px;
-        font-weight: bold;
-        cursor: pointer;
-        color: #1b1b1b;
-        background: linear-gradient(135deg, #fff3cd, #f1c40f);
-    }
-
-    .live-chat.collapsed {
-        width: 58px;
-        height: 58px;
-        max-height: 58px;
-        border-radius: 50%;
-    }
-
-    .live-chat.collapsed .chat-body,
-    .live-chat.collapsed .chat-title,
-    .live-chat.collapsed .chat-status { display: none; }
-
-    .live-chat.collapsed .chat-header {
-        height: 100%;
-        padding: 0;
-        justify-content: center;
-        border: none;
-    }
-
-    .live-chat.collapsed .chat-toggle {
-        width: 58px;
-        height: 58px;
-        font-size: 1.3rem;
-        background: linear-gradient(135deg, #fff3cd, #f1c40f);
-        color: #1b1b1b;
-    }
-
-    .feedback-section {
-        max-width: 900px;
-        margin: 90px auto 40px;
-        padding: 35px;
-        position: relative;
-        z-index: 10;
-        border-radius: 25px;
-        background: linear-gradient(135deg, rgba(255,255,255,0.13), rgba(255,255,255,0.04));
-        border: 1px solid rgba(255,255,255,0.23);
-        box-shadow: 0 15px 45px rgba(0,0,0,0.45);
-        backdrop-filter: blur(14px);
-        -webkit-backdrop-filter: blur(14px);
-    }
-
-    .feedback-title {
-        margin-top: 0;
-        font-size: 2rem;
-        text-shadow: 0 3px 10px rgba(0,0,0,0.8);
-    }
-
-    .feedback-message {
-        max-width: 750px;
-        margin: 0 auto 25px;
-        padding: 18px 22px;
-        border-radius: 18px;
-        background: rgba(255,255,255,0.07);
-        border: 1px solid rgba(255,255,255,0.15);
-        color: rgba(255,255,255,0.9);
-        line-height: 1.7;
-    }
-
-    .sparkle { color: #f1c40f; font-size: 1.15rem; }
-
-    .feedback-form {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    .feedback-input {
-        width: 100%;
-        padding: 14px 16px;
-        border-radius: 14px;
-        border: 1px solid rgba(255,255,255,0.22);
-        background: rgba(0,0,0,0.25);
-        color: white;
-        outline: none;
-        font-family: Arial, sans-serif;
-        font-size: 1rem;
-    }
-
-    .feedback-input::placeholder { color: rgba(255,255,255,0.55); }
-
-    .feedback-input:focus {
-        border-color: rgba(241,196,15,0.8);
-        background: rgba(0,0,0,0.35);
-    }
-
-    .feedback-message-input { min-height: 140px; resize: vertical; }
-
-    .feedback-button {
-        align-self: center;
-        border: none;
-        padding: 12px 30px;
-        border-radius: 30px;
-        cursor: pointer;
-        font-weight: bold;
-        color: #1b1b1b;
-        background: linear-gradient(135deg, #fff3cd, #f1c40f);
-        box-shadow: 0 5px 18px rgba(241,196,15,0.25);
-    }
-
-    .feedback-button:disabled {
-        opacity: 0.65;
-        cursor: wait;
-    }
-
-    #feedback-list {
-        max-width: 750px;
-        margin: 30px auto 0;
-    }
-
-    .feedback-list-title {
-        color: #f1c40f;
-        margin: 0 0 15px;
-        font-size: 1.25rem;
-    }
-
-    .feedback-item {
-        text-align: left;
-        margin: 0 auto 14px;
-        padding: 18px 20px;
-        border-radius: 18px;
-        background: rgba(255,255,255,0.07);
-        border: 1px solid rgba(255,255,255,0.15);
-        box-shadow: 0 8px 22px rgba(0,0,0,0.18);
-    }
-
-    .feedback-item-name {
-        font-weight: bold;
-        color: #f1c40f;
-        margin-bottom: 7px;
-    }
-
-    .feedback-item-text {
-        color: rgba(255,255,255,0.9);
-        white-space: pre-wrap;
-        overflow-wrap: anywhere;
-        line-height: 1.5;
-    }
-
-    .feedback-item-date {
-        color: rgba(255,255,255,0.4);
-        font-size: 0.7rem;
-        margin-top: 9px;
-    }
-
-    footer {
-        position: relative;
-        z-index: 10;
-        margin-top: 30px;
-        padding: 25px;
-        color: rgba(255,255,255,0.5);
-        font-size: 0.8rem;
-    }
-
-    @media (max-width: 1200px) {
-        .live-chat { width: 270px; left: 10px; }
-    }
-
-    @media (max-width: 1000px) {
-        .live-chat {
-            position: fixed;
-            left: 15px;
-            bottom: 15px;
-            top: auto;
-            transform: none;
-            width: 290px;
-            max-height: 500px;
-        }
-
-        .grid { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    @media (max-width: 700px) {
-        body { padding: 10px; }
-
-        header h1 {
-            font-size: 1.7rem;
-            letter-spacing: 1px;
-        }
-
-        .grid { grid-template-columns: 1fr; }
-        .card-container { height: 300px; }
-
-        .live-chat {
-            width: calc(100% - 30px);
-            left: 15px;
-            bottom: 15px;
-            max-height: 440px;
-        }
-
-        .chat-messages { max-height: 250px; }
-
-        .feedback-section {
-            padding: 22px;
-            margin-top: 60px;
-        }
-
-        .feedback-title { font-size: 1.6rem; }
-    }
-
-    @media (max-width: 450px) {
-        .live-chat {
-            width: calc(100% - 20px);
-            left: 10px;
-            bottom: 10px;
-        }
-    }
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color:#514d50;background:#c9e4ec;font-family:Tahoma,Arial,sans-serif;font-size:12px;line-height:1.45}
+body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(circle at 50% 15%,#fff8e8aa 0%,transparent 48%),linear-gradient(180deg,#c9e4ec 0%,#d5e9eb 55%,#c7e0e7 100%)}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:999;background-image:radial-gradient(#ffffff18 1px,transparent 1px),radial-gradient(#d76aa622 1px,transparent 1px);background-size:23px 23px,37px 37px;background-position:0 0,11px 9px;opacity:.28}
+a{color:#9a5f7d;text-decoration:none}a:hover{color:#70445d;text-decoration:underline}
+.page{width:min(1180px,calc(100% - 18px));margin:18px auto 50px;display:grid;grid-template-columns:190px minmax(0,1fr) 190px;gap:9px}
+.sidebar,.center{min-width:0}.sidebar .box,.right .box{background:#edf3ed}.center .box{background:#f7efdf}
+.box{border:1px solid #b995a6;background:#f6efdf;box-shadow:inset 0 0 0 1px #fffaf0,0 3px 10px #7899a044;margin-bottom:9px}
+.box-title{padding:6px 8px;color:#69475a;font-weight:bold;font-size:12px;letter-spacing:.4px;background:linear-gradient(#ead9df,#f6efdf);border-bottom:1px solid #c09aaa;text-shadow:1px 1px #fff8}
+.box-body{padding:8px}.tiny{font-size:10px;color:#a99aa2}
+.logo-wrap{text-align:center;padding:10px}.logo-wrap img{width:100%;max-width:160px;border:1px solid #b58a9c;padding:3px;background:#fffaf0}
+.site-title{text-align:center;padding:10px 8px;color:#674a58;font-family:Georgia,serif;font-size:22px;letter-spacing:1px;text-shadow:0 1px #000,0 0 10px #bd5487}
+.music{text-align:center}.music button{border:1px solid #b77c97;background:linear-gradient(#c58ba4,#a96f89);color:#fffaf5;padding:5px 10px;font-size:10px;cursor:pointer}
+.music button:hover{filter:brightness(1.25)}
+.ticker{overflow:hidden;white-space:nowrap;color:#8a6274;border-top:1px dotted #b28b9b;border-bottom:1px dotted #b28b9b;padding:4px 0}.ticker span{display:inline-block;animation:scroll 18s linear infinite}
+@keyframes scroll{from{transform:translateX(100%)}to{transform:translateX(-100%)}}
+.hero{padding:11px 13px;min-height:160px;background:linear-gradient(90deg,#f7efdf 0%,#eee2d2 100%)}
+.hero h1{margin:0 0 4px;font:20px Georgia,serif;color:#68495a}.hero p{margin:6px 0;color:#665e62}
+.quote{margin-top:9px;padding:7px 9px;border-left:3px solid #b77b96;background:#eee1cf;color:#735b66;font-style:italic}
+.about{display:grid;grid-template-columns:105px 1fr;gap:10px}.about-photo{width:100%;border:1px solid #895f72;padding:3px;background:#fffaf0}
+.about h2,.section-title{margin:0 0 6px;font:17px Georgia,serif;color:#68495a}.about p{margin:6px 0}
+.hall-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;padding:8px}
+.member{border:1px solid #c4a0ae;background:#fbf5e8;padding:5px;min-width:0;transition:.15s}.member:hover{border-color:#a86d87;background:#f1e4d5;transform:translateY(-1px)}
+.member>a:first-child{display:block}.member img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;border:1px solid #b68b9b;filter:saturate(.92) contrast(1.02)}
+.member-info{padding:5px 2px 1px}.member-name{display:block;font-weight:bold;color:#754d61;font-size:12px}.member span{display:block;color:#786c72;font-size:9px;margin-top:2px}.member small{display:block;color:#96818b;font-size:8px;margin-top:3px}
+.guestbook input,.guestbook textarea{width:100%;background:#fffaf0;border:1px solid #c0a0ac;color:#514b4f;padding:5px;font:10px Tahoma;margin-bottom:5px}
+.guestbook textarea{min-height:75px;resize:vertical}.guestbook button{border:1px solid #b27a92;background:#b77a96;color:#fffaf5;padding:5px 9px;font-size:10px;cursor:pointer}
+.guestbook-entry{margin-top:7px;padding:6px;border:1px dotted #c6a5b2;background:#f0e4d5}.guestbook-entry b{color:#754d61}
+#feedbackList{max-height:150px;overflow-y:auto;margin-top:6px}#feedbackStatus,#chatStatus{min-height:13px}#chatList{scrollbar-width:thin}
+.chat-entry{margin-bottom:6px;padding:6px;border:1px dotted #c6a5b2;background:#f0e4d5}.chat-entry b{color:#754d61}.chat-entry .chat-time{font-size:8px;color:#96818b;margin-top:2px}
+.mini-photo{width:100%;aspect-ratio:1/1;object-fit:cover;border:1px solid #b890a0;margin-bottom:4px}
+.right-links a{display:block;padding:4px 0;border-bottom:1px dotted #c2a8b2;font-size:10px}.footer{text-align:center;color:#82777b;font-size:9px;padding:14px}
+.spark{position:fixed;z-index:1000;pointer-events:none;color:#f7cfe1;animation:spark 1.2s ease-out forwards;text-shadow:0 0 6px #ff7eb2}
+@keyframes spark{0%{opacity:0;transform:scale(.3) rotate(0)}20%{opacity:1;transform:scale(1.3) rotate(30deg)}100%{opacity:0;transform:scale(.4) rotate(120deg) translateY(-35px)}}
+@media(max-width:900px){.page{grid-template-columns:150px minmax(0,1fr)}.right{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:9px}.right .box{margin-bottom:0}}
+@media(max-width:650px){body{font-size:11px}.page{display:block;width:calc(100% - 10px);margin:5px auto}.sidebar,.right{display:block}.box{margin-bottom:7px}.hall-grid{grid-template-columns:repeat(2,1fr)}.about{grid-template-columns:80px 1fr}.site-title{font-size:19px}}
 </style>
-
 </head>
-
 <body>
+<div class="page">
 
-<div class="music-box">
-    <audio id="bg-music" src="AHOF_-_Butterfly_(mp3.pm).mp3" loop></audio>
-    <button type="button" class="music-button" id="music-button">🎵 Play Music</button>
-</div>
-
-<header>
-    <img
-        src="https://i.pinimg.com/736x/d6/66/ed/d666ed989eae452547e6645acb2b28e1.jpg"
-        alt="ALL-Time Hall of Famer Logo"
-        class="logo">
-
-    <h1>✨ ALL-Time HALL OF FAMER ✨</h1>
-</header>
-
-<main class="main-content">
-
-    <div class="grid" id="team-grid"></div>
-
-    <section class="feedback-section" id="feedback">
-
-        <h2 class="feedback-title">✨ Feedback & Suggestions ✨</h2>
-
-        <div class="feedback-message">
-            <span class="sparkle">✦</span>
-            Have an idea for the Hall of Fame?
-            Tell us what you think, suggest improvements,
-            or share your favorite moments.
-            <span class="sparkle">✦</span>
-        </div>
-
-        <form class="feedback-form" id="feedback-form">
-
-            <input
-                type="text"
-                id="feedback-name"
-                class="feedback-input"
-                placeholder="Your name"
-                autocomplete="nickname"
-                maxlength="100"
-                required>
-
-            <textarea
-                id="feedback-message"
-                class="feedback-input feedback-message-input"
-                placeholder="Write your feedback or suggestion..."
-                maxlength="2000"
-                required></textarea>
-
-            <button type="submit" class="feedback-button">
-                💛 Submit Feedback
-            </button>
-
-        </form>
-
-        <!-- FIX: permanent display area for Supabase feedback -->
-        <div id="feedback-list">
-            <div class="feedback-message">
-                ✨ Loading feedback...
-            </div>
-        </div>
-
-    </section>
-
-</main>
-
-<aside class="live-chat" id="live-chat">
-
-    <div class="chat-header">
-
-        <div>
-            <h3 class="chat-title">💬 Live Conversation</h3>
-
-            <div class="chat-status">
-                <span class="online-dot"></span>
-                Community Chat
-            </div>
-        </div>
-
-        <button
-            type="button"
-            class="chat-toggle"
-            id="chat-toggle"
-            title="Collapse chat">
-            −
-        </button>
-
+<aside class="sidebar">
+  <div class="box logo-wrap">
+    <img src="https://i.pinimg.com/736x/d6/66/ed/d666ed989eae452547e6645acb2b28e1.jpg" alt="ALL-Time Hall of Famer">
+    <div class="tiny" style="margin-top:6px">★ official fan page ★</div>
+  </div>
+  <div class="box music">
+    <div class="box-title">Now Playing ♪</div>
+    <div class="box-body">
+      <div class="tiny">AHOF — Butterfly</div>
+      <audio id="music" src="AHOF_-_Butterfly_(mp3.pm).mp3" loop></audio>
+      <button id="musicBtn">▶ PLAY MUSIC</button>
+      <div class="tiny" style="margin-top:6px">turn the volume up ♥</div>
     </div>
-
-    <div class="chat-body">
-
-        <div class="chat-messages" id="chat-messages">
-
-            <div class="chat-empty">
-                ✨ Welcome to the Hall of Fame conversation!
-                <br><br>
-                Leave a message and start the discussion.
-            </div>
-
-        </div>
-
-        <form class="chat-form" id="chat-form">
-
-            <input
-                type="text"
-                id="chat-name"
-                class="chat-input"
-                placeholder="Your name"
-                autocomplete="nickname"
-                maxlength="100"
-                required>
-
-            <textarea
-                id="chat-text"
-                class="chat-input chat-text"
-                placeholder="Say something..."
-                maxlength="2000"
-                required></textarea>
-
-            <button type="submit" class="chat-send">
-                ✨ Send
-            </button>
-
-        </form>
-
-    </div>
-
+  </div>
 </aside>
 
-<footer>
-    ✦ ALL-Time HALL OF FAMER ✦
-    <br>
-    Made with ✨ and appreciation
-</footer>
+<main class="center">
+  <div class="box" id="home">
+    <div class="site-title">✦ ALL-Time HALL OF FAMER ✦</div>
+    <div class="ticker"><span>♥ welcome to my little corner of the internet • please sign the guestbook • enjoy the music • click the photos for their related links ♥</span></div>
+  </div>
 
+  <section class="box hero">
+    <h1>Welcome to the Hall of Fame! ♡</h1>
+    <p>A tiny retro-web corner dedicated to the members of <b>ALL(H)O(F)FAME</b>. Scroll around, visit the profiles, listen to the music and leave a little message.</p>
+    <p class="tiny">last updated: 09.29.2026 • best viewed with a little nostalgia</p>
+    <div class="quote">"Memories are worth cherishing for a lifetime." ✦</div>
+  </section>
+
+  <section class="box" id="about">
+    <div class="box-title">About the Hall ♡</div>
+    <div class="box-body about">
+      <img class="about-photo" src="https://i.pinimg.com/736x/d6/66/ed/d666ed989eae452547e6645acb2b28e1.jpg" alt="Hall logo">
+      <div>
+        <h2>about this page...</h2>
+        <p>The name “AHOF,” short for “All-time Hall Of Famer,” was created by F&F Entertainment to represent their vision of the group becoming lasting and influential figures in the K-pop industry—just like the legendary names remembered in a “hall of fame.” ✨</p>
+        <p>There’s also a fun meaning behind the name! In Korean, “AHOF” sounds similar to the word for the number 9, which represents the group’s nine members. It also reflects the idea that their journey is still continuing, with plenty of room to grow, create memories, and make their mark together. 💙</p>
+        
+      </div>
+    </div>
+  </section>
+
+  <section class="box" id="hall">
+    <div class="box-title">Hall of Fame ★ featured members</div>
+    <div class="hall-grid">
+<article class="member">
+<a href="https://en.wikipedia.org/wiki/JL_Gaspar" target="_blank" rel="noopener noreferrer" title="Open JL Gaspar related link"><img src="https://i.pinimg.com/736x/91/86/a2/9186a201623045ff4dc7550a345e78c7.jpg" alt="JL Gaspar" loading="lazy"></a>
+<div class="member-info"><a class="member-name" href="https://en.wikipedia.org/wiki/JL_Gaspar" target="_blank" rel="noopener noreferrer">JL Gaspar</a><span>The Sassy Center</span><small>Filipino • April 21, 2004</small></div>
+</article>
+<article class="member">
+<a href="https://en.namu.wiki/w/%EB%B0%95%ED%95%9C(AHOF)" target="_blank" rel="noopener noreferrer" title="Open Park Han related link"><img src="https://i.pinimg.com/736x/44/28/e6/4428e6953c10396c5f8ea3e9f0df6896.jpg" alt="Park Han" loading="lazy"></a>
+<div class="member-info"><a class="member-name" href="https://en.namu.wiki/w/%EB%B0%95%ED%95%9C(AHOF)" target="_blank" rel="noopener noreferrer">Park Han</a><span>The Yearner Vocalist</span><small>Korean • September 25, 2003</small></div>
+</article>
+<article class="member">
+<a href="https://kpop.fandom.com/wiki/Steven" target="_blank" rel="noopener noreferrer" title="Open Steven Kim related link"><img src="https://i.pinimg.com/736x/b8/25/f9/b825f918dd85c4e918fd997b1ff1ab71.jpg" alt="Steven Kim" loading="lazy"></a>
+<div class="member-info"><a class="member-name" href="https://kpop.fandom.com/wiki/Steven" target="_blank" rel="noopener noreferrer">Steven Kim</a><span>The Aussie Muscleman Leader</span><small>Half Korean / Half Australian • January 17, 2000</small></div>
+</article>
+<article class="member">
+<a href="https://kprofiles.com/chih-en-ahof-profile-and-facts/" target="_blank" rel="noopener noreferrer" title="Open ChihEn related link"><img src="https://i.pinimg.com/1200x/0e/bc/6d/0ebc6da7b1a4a702a808b0b199c23e06.jpg" alt="ChihEn" loading="lazy"></a>
+<div class="member-info"><a class="member-name" href="https://kprofiles.com/chih-en-ahof-profile-and-facts/" target="_blank" rel="noopener noreferrer">ChihEn</a><span>The Nonchalant Visual</span><small>Taiwanese • October 28, 2006</small></div>
+</article>
+<article class="member">
+<a href="https://kpop.fandom.com/wiki/Daisuke_(AHOF)" target="_blank" rel="noopener noreferrer" title="Open Daisuke related link"><img src="https://i.pinimg.com/736x/70/48/fb/7048fb148dde2d31fae382e8bdf44ef8.jpg" alt="Daisuke" loading="lazy"></a>
+<div class="member-info"><a class="member-name" href="https://kpop.fandom.com/wiki/Daisuke_(AHOF)" target="_blank" rel="noopener noreferrer">Daisuke</a><span>The Youngest Monzter</span><small>Japanese • December 25, 2009</small></div>
+</article>
+<article class="member">
+<a href="https://kprofiles.com/jeongwoo-ahof-profile-and-facts/" target="_blank" rel="noopener noreferrer" title="Open Seo Jeongwo related link"><img src="https://i.pinimg.com/736x/fe/73/54/fe7354a6614a752fd37261c80f9469b9.jpg" alt="Seo Jeongwo" loading="lazy"></a>
+<div class="member-info"><a class="member-name" href="https://kprofiles.com/jeongwoo-ahof-profile-and-facts/" target="_blank" rel="noopener noreferrer">Seo Jeongwo</a><span>The Second Lead Syndrome</span><small>Korean • September 06, 2001</small></div>
+</article>
+<article class="member">
+<a href="https://kprofiles.com/park-juwon-ahof-profile-and-facts/" target="_blank" rel="noopener noreferrer" title="Open Park Juwon related link"><img src="https://i.pinimg.com/1200x/31/d7/4d/31d74d6b7646b92222130d769ba98a8c.jpg" alt="Park Juwon" loading="lazy"></a>
+<div class="member-info"><a class="member-name" href="https://kprofiles.com/park-juwon-ahof-profile-and-facts/" target="_blank" rel="noopener noreferrer">Park Juwon</a><span>The Main "Crybaby" Dancer</span><small>Korean • July 24, 2006</small></div>
+</article>
+<article class="member">
+<a href="https://kprofiles.com/shuaibo-ahof-profile-and-facts/" target="_blank" rel="noopener noreferrer" title="Open Zhang Shuaibo related link"><img src="https://i.pinimg.com/736x/2c/6e/1d/2c6e1de1b56889e1d796f5aa00cc0015.jpg" alt="Zhang Shuaibo" loading="lazy"></a>
+<div class="member-info"><a class="member-name" href="https://kprofiles.com/shuaibo-ahof-profile-and-facts/" target="_blank" rel="noopener noreferrer">Zhang Shuaibo</a><span>The Pretty Choleric Diva</span><small>Chinese • July 02, 2002</small></div>
+</article>
+<article class="member">
+<a href="https://en.wikipedia.org/wiki/Cha_Woong-ki" target="_blank" rel="noopener noreferrer" title="Open Cha Woongki related link"><img src="https://i.pinimg.com/736x/46/31/90/4631908612149ad38c21f8f234c4e77a.jpg" alt="Cha Woongki" loading="lazy"></a>
+<div class="member-info"><a class="member-name" href="https://en.wikipedia.org/wiki/Cha_Woong-ki" target="_blank" rel="noopener noreferrer">Cha Woongki</a><span>The Sassy Diva</span><small>Korean • April 23, 2002</small></div>
+</article>
+    </div>
+  </section>
+
+  <section class="box" id="guestbook">
+    <div class="box-title">Guestbook ♥</div>
+    <div class="box-body guestbook">
+      <div class="tiny">leave a little message for the page...</div>
+      <input id="gbName" maxlength="40" placeholder="your name">
+      <textarea id="gbMsg" maxlength="300" placeholder="write something nice..."></textarea>
+      <button id="gbSend">SIGN GUESTBOOK</button>
+      <div id="gbList"></div>
+    </div>
+  </section>
+  <div class="footer">✦ ALL-Time HALL OF FAMER ✦ • made with ♡ and nostalgia • 2000s web energy</div>
+</main>
+
+<aside class="right">
+  <div class="box">
+    <div class="box-title">Random Favorite ♥</div>
+    <div class="box-body">
+      <img class="mini-photo" src="https://i.pinimg.com/736x/91/86/a2/9186a201623045ff4dc7550a345e78c7.jpg" alt="JL Gaspar">
+      <b>JL Gaspar</b><div class="tiny">The Sassy Center</div>
+      <a class="tiny-link" href="https://en.wikipedia.org/wiki/JL_Gaspar" target="_blank">visit profile →</a>
+    </div>
+  </div>
+
+  <div class="box">
+    <div class="box-title">Members</div>
+    <div class="box-body right-links">
+<a href="https://en.wikipedia.org/wiki/JL_Gaspar" target="_blank" rel="noopener noreferrer">JL Gaspar</a>
+<a href="https://en.namu.wiki/w/%EB%B0%95%ED%95%9C(AHOF)" target="_blank" rel="noopener noreferrer">Park Han</a>
+<a href="https://kpop.fandom.com/wiki/Steven" target="_blank" rel="noopener noreferrer">Steven Kim</a>
+<a href="https://kprofiles.com/chih-en-ahof-profile-and-facts/" target="_blank" rel="noopener noreferrer">ChihEn</a>
+<a href="https://kpop.fandom.com/wiki/Daisuke_(AHOF)" target="_blank" rel="noopener noreferrer">Daisuke</a>
+<a href="https://kprofiles.com/jeongwoo-ahof-profile-and-facts/" target="_blank" rel="noopener noreferrer">Seo Jeongwo</a>
+<a href="https://kprofiles.com/park-juwon-ahof-profile-and-facts/" target="_blank" rel="noopener noreferrer">Park Juwon</a>
+<a href="https://kprofiles.com/shuaibo-ahof-profile-and-facts/" target="_blank" rel="noopener noreferrer">Zhang Shuaibo</a>
+<a href="https://en.wikipedia.org/wiki/Cha_Woong-ki" target="_blank" rel="noopener noreferrer">Cha Woongki</a>
+    </div>
+  </div>
+
+  <div class="box" id="feedback">
+    <div class="box-title">Feedback ♥</div>
+    <div class="box-body guestbook">
+      <div class="tiny">tell me what you think about the page...</div>
+      <input id="feedbackName" maxlength="40" placeholder="your name">
+      <textarea id="feedbackMsg" maxlength="500" placeholder="your feedback..."></textarea>
+      <button id="feedbackSend">SEND FEEDBACK</button>
+      <div id="feedbackStatus" class="tiny" style="margin-top:5px"></div>
+      <div id="feedbackList"></div>
+    </div>
+  </div>
+
+  <div class="box" id="livechat">
+    <div class="box-title">Live Chat ☕</div>
+    <div class="box-body guestbook">
+      <div class="tiny">everyone's messages appear here ♥</div>
+      <div id="chatList" style="max-height:280px;overflow-y:auto;margin:6px 0"></div>
+      <input id="chatName" maxlength="40" placeholder="your name">
+      <textarea id="chatMsg" maxlength="300" placeholder="say something..."></textarea>
+      <button id="chatSend">SEND CHAT</button>
+      <div id="chatStatus" class="tiny" style="margin-top:5px"></div>
+    </div>
+  </div>
+</aside>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-
-    /* =========================================================
-       HALL OF FAME MEMBERS
-    ========================================================= */
-
-    const people = [
-
-        {
-            name: "JL Gaspar",
-            desc: "The Sassy Center",
-            info: "Filipino, born on April 21, 2004",
-            link: "https://en.wikipedia.org/wiki/JL_Gaspar",
-            image: "https://i.pinimg.com/736x/91/86/a2/9186a201623045ff4dc7550a345e78c7.jpg"
-        },
-
-        {
-            name: "Park Han",
-            desc: "The Yearner Vocalist",
-            info: "Korean, born on September 25, 2003",
-            link: "https://en.namu.wiki/w/%EB%B0%95%ED%95%9C(AHOF)",
-            image: "https://i.pinimg.com/736x/44/28/e6/4428e6953c10396c5f8ea3e9f0df6896.jpg"
-        },
-
-        {
-            name: "Steven Kim",
-            desc: "The Aussie Muscleman Leader",
-            info: "Half Korean-Half Australian, born on January 17, 2000",
-            link: "https://kpop.fandom.com/wiki/Steven",
-            image: "https://i.pinimg.com/736x/b8/25/f9/b825f918dd85c4e918fd997b1ff1ab71.jpg"
-        },
-
-        {
-            name: "ChihEn",
-            desc: "The Nonchalant Visual",
-            info: "Taiwanese, born on October 28, 2006",
-            link: "https://kprofiles.com/chih-en-ahof-profile-and-facts/",
-            image: "https://i.pinimg.com/1200x/0e/bc/6d/0ebc6da7b1a4a702a808b0b199c23e06.jpg"
-        },
-
-        {
-            name: "Daisuke",
-            desc: "The Youngest Monzter",
-            info: "Japanese, born on December 25, 2009",
-            link: "https://kpop.fandom.com/wiki/Daisuke_(AHOF)",
-            image: "https://i.pinimg.com/736x/70/48/fb/7048fb148dde2d31fae382e8bdf44ef8.jpg"
-        },
-
-        {
-            name: "Seo Jeongwo",
-            desc: "The Second Lead Syndrome",
-            info: "Korean, born on September 06, 2001",
-            link: "https://kprofiles.com/jeongwoo-ahof-profile-and-facts/",
-            image: "https://i.pinimg.com/736x/fe/73/54/fe7354a6614a752fd37261c80f9469b9.jpg"
-        },
-
-        {
-            name: "Park Juwon",
-            desc: "The Main \"Crybaby\" Dancer",
-            info: "Korean, born on July 24, 2006",
-            link: "https://kprofiles.com/park-juwon-ahof-profile-and-facts/",
-            image: "https://i.pinimg.com/1200x/31/d7/4d/31d74d6b7646b92222130d769ba98a8c.jpg"
-        },
-
-        {
-            name: "Zhang Shuaibo",
-            desc: "The Pretty Choleric Diva",
-            info: "Chinese, born on July 02, 2002",
-            link: "https://kprofiles.com/shuaibo-ahof-profile-and-facts/",
-            image: "https://i.pinimg.com/736x/2c/6e/1d/2c6e1de1b56889e1d796f5aa00cc0015.jpg"
-        },
-
-        {
-            name: "Cha Woongki",
-            desc: "The Sassy Diva",
-            info: "Korean, born on April 23, 2002",
-            link: "https://en.wikipedia.org/wiki/Cha_Woong-ki",
-            image: "https://i.pinimg.com/736x/46/31/90/4631908612149ad38c21f8f234c4e77a.jpg"
-        }
-
-    ];
-
-
-    /* =========================================================
-       CREATE HALL OF FAME CARDS
-    ========================================================= */
-
-    const grid = document.getElementById("team-grid");
-
-    people.forEach((person, index) => {
-
-        const container = document.createElement("div");
-
-        container.className = "card-container";
-
-        container.innerHTML = `
-
-            <div class="card" id="card-${index}">
-
-                <div class="card-face">
-
-                    <img
-                        src="${person.image}"
-                        alt="${person.name}"
-                        loading="lazy">
-
-                    <h3>
-
-                        <a
-                            href="${person.link}"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="wiki-link">
-
-                            ${person.name}
-
-                        </a>
-
-                    </h3>
-
-                    <p>${person.desc}</p>
-
-                </div>
-
-                <div class="card-face card-back">
-
-                    <h3>More Info</h3>
-
-                    <p>${person.info}</p>
-
-                    <p>Click again to flip back.</p>
-
-                </div>
-
-            </div>
-        `;
-
-        container.addEventListener("click", (event) => {
-
-            if (event.target.tagName !== "A") {
-
-                const card = document.getElementById(`card-${index}`);
-
-                card.classList.toggle("flipped");
-
-            }
-
-        });
-
-        grid.appendChild(container);
-
-    });
-
-
-    /* =========================================================
-       MUSIC
-    ========================================================= */
-
-    const music = document.getElementById("bg-music");
-    const musicButton = document.getElementById("music-button");
-
-    musicButton.addEventListener("click", async () => {
-
-        try {
-
-            if (music.paused) {
-
-                await music.play();
-
-                musicButton.textContent = "⏸️ Pause Music";
-
-            } else {
-
-                music.pause();
-
-                musicButton.textContent = "🎵 Play Music";
-
-            }
-
-        } catch (error) {
-
-            console.error("Music could not be played:", error);
-
-            alert(
-                "The music could not be played. " +
-                "Please check that the music file is uploaded to the repository."
-            );
-
-        }
-
-    });
-
-
-    /* =========================================================
-       GLITTER
-    ========================================================= */
-
-    const starColors = [
-        "#ffffff",
-        "#fff3cd",
-        "#ffeaa7",
-        "#fdcb6e",
-        "#f1c40f"
-    ];
-
-    function createGlitterParticle() {
-
-        const glitter = document.createElement("div");
-
-        glitter.className = "glitter";
-
-        const size = Math.random() * 6 + 2;
-        const leftPosition = Math.random() * window.innerWidth;
-        const duration = Math.random() * 5 + 4;
-
-        const chosenColor =
-            starColors[
-                Math.floor(Math.random() * starColors.length)
-            ];
-
-        glitter.style.width = `${size}px`;
-        glitter.style.height = `${size}px`;
-        glitter.style.left = `${leftPosition}px`;
-        glitter.style.top = "-10px";
-        glitter.style.backgroundColor = chosenColor;
-        glitter.style.boxShadow = `0 0 ${size * 3}px ${chosenColor}`;
-        glitter.style.animationDuration = `${duration}s`;
-
-        document.body.appendChild(glitter);
-
-        setTimeout(() => glitter.remove(), duration * 1000);
-
-    }
-
-    for (let i = 0; i < 50; i++) {
-        createGlitterParticle();
-    }
-
-    setInterval(createGlitterParticle, 150);
-
-
-    /* =========================================================
-       SPARKLE BURSTS
-    ========================================================= */
-
-    function createSparkleBurst() {
-
-        const sparkle = document.createElement("div");
-
-        sparkle.className = "sparkle-burst";
-
-        sparkle.textContent = "✦";
-
-        sparkle.style.left = `${Math.random() * 95}vw`;
-        sparkle.style.top = `${Math.random() * 90}vh`;
-
-        document.body.appendChild(sparkle);
-
-        setTimeout(() => sparkle.remove(), 1400);
-
-    }
-
-    setInterval(createSparkleBurst, 900);
-
-
-    /* =========================================================
-       LIVE CHAT
-    ========================================================= */
-
-    const chat = document.getElementById("live-chat");
-    const chatToggle = document.getElementById("chat-toggle");
-
-    chatToggle.addEventListener("click", () => {
-
-        chat.classList.toggle("collapsed");
-
-        if (chat.classList.contains("collapsed")) {
-
-            chatToggle.textContent = "💬";
-            chatToggle.title = "Open chat";
-
-        } else {
-
-            chatToggle.textContent = "−";
-            chatToggle.title = "Collapse chat";
-
-        }
-
-    });
-
-
-    /* =========================================================
-       LOCAL CHAT STORAGE
-       NOTE: Live Chat remains localStorage exactly as before.
-    ========================================================= */
-
-    const chatForm = document.getElementById("chat-form");
-    const chatName = document.getElementById("chat-name");
-    const chatText = document.getElementById("chat-text");
-    const chatMessages = document.getElementById("chat-messages");
-
-    let chatComments = [];
-
-    try {
-
-        chatComments =
-            JSON.parse(
-                localStorage.getItem("hallOfFameLiveChat")
-            ) || [];
-
-    } catch (error) {
-
-        chatComments = [];
-
-    }
-
-    function saveChat() {
-
-        localStorage.setItem(
-            "hallOfFameLiveChat",
-            JSON.stringify(chatComments)
-        );
-
-    }
-
-    function displayChat() {
-
-        chatMessages.innerHTML = "";
-
-        if (chatComments.length === 0) {
-
-            chatMessages.innerHTML = `
-
-                <div class="chat-empty">
-
-                    ✨ Welcome to the
-                    Hall of Fame conversation!
-
-                    <br><br>
-
-                    Be the first to say hello.
-
-                </div>
-
-            `;
-
-            return;
-
-        }
-
-        chatComments.forEach((comment) => {
-
-            const message = document.createElement("div");
-
-            message.className = "chat-message";
-
-            message.innerHTML = `
-
-                <div class="chat-message-name">
-                    ✨ ${escapeHTML(comment.name)}
-                </div>
-
-                <div class="chat-message-text">
-                    ${escapeHTML(comment.message)}
-                </div>
-
-                <div class="chat-message-date">
-                    ${escapeHTML(comment.date)}
-                </div>
-
-            `;
-
-            chatMessages.appendChild(message);
-
-        });
-
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-
-    }
-
-    function escapeHTML(value) {
-
-        const div = document.createElement("div");
-
-        div.textContent = String(value ?? "");
-
-        return div.innerHTML;
-
-    }
-
-    chatForm.addEventListener("submit", (event) => {
-
-        event.preventDefault();
-
-        const name = chatName.value.trim();
-        const message = chatText.value.trim();
-
-        if (!name || !message) {
-            return;
-        }
-
-        chatComments.push({
-
-            name: name,
-            message: message,
-            date: new Date().toLocaleString()
-
-        });
-
-        saveChat();
-        displayChat();
-        chatForm.reset();
-
-    });
-
-    displayChat();
-
-
-    /* =========================================================
-       SUPABASE FEEDBACK
-       FIXED VERSION
-    ========================================================= */
-
-    const SUPABASE_URL =
-        "https://oayeqcemcyfwrtjpfavc.supabase.co";
-
-    const SUPABASE_KEY =
-        "sb_publishable_xv9K0th6XbPNgZ2c8Zan6Q_EZZ7ebZ5";
-
-    /* AHOF FEEDBACK VERSION MARKER */
-    window.__AHOF_FEEDBACK_VERSION = "SUPABASE-FEEDBACK-FINAL-2026-09-28";
-    console.log("AHOF feedback system loaded:", window.__AHOF_FEEDBACK_VERSION);
-
-    const feedbackForm =
-        document.getElementById("feedback-form");
-
-    const feedbackName =
-        document.getElementById("feedback-name");
-
-    const feedbackMessage =
-        document.getElementById("feedback-message");
-
-    const feedbackList =
-        document.getElementById("feedback-list");
-
-
-    /* =========================================================
-       LOAD FEEDBACK FROM SUPABASE
-    ========================================================= */
-
-    async function loadFeedback() {
-
-        feedbackList.innerHTML = `
-
-            <div class="feedback-message">
-                ✨ Loading feedback...
-            </div>
-
-        `;
-
-        try {
-
-            const response = await fetch(
-
-                SUPABASE_URL +
-                "/rest/v1/Feedback" +
-                "?select=id,name,message,created_at" +
-                "&order=created_at.desc",
-
-                {
-                    method: "GET",
-
-                    headers: {
-
-                        "apikey": SUPABASE_KEY,
-
-                        "Authorization":
-                            "Bearer " + SUPABASE_KEY
-
-                    }
-
-                }
-
-            );
-
-
-            if (!response.ok) {
-
-                const errorText =
-                    await response.text();
-
-                throw new Error(
-                    `Could not load feedback. ${errorText}`
-                );
-
-            }
-
-
-            const feedback =
-                await response.json();
-
-
-            feedbackList.innerHTML = "";
-
-
-            if (!Array.isArray(feedback) || feedback.length === 0) {
-
-                feedbackList.innerHTML = `
-
-                    <div class="feedback-message">
-
-                        ✨ No feedback yet.
-                        Be the first to share your thoughts!
-
-                    </div>
-
-                `;
-
-                return;
-
-            }
-
-
-            const title =
-                document.createElement("h3");
-
-            title.className =
-                "feedback-list-title";
-
-            title.textContent =
-                "💛 Community Feedback";
-
-            feedbackList.appendChild(title);
-
-
-            feedback.forEach((comment) => {
-
-                const item =
-                    document.createElement("div");
-
-                item.className =
-                    "feedback-item";
-
-
-                const name =
-                    document.createElement("div");
-
-                name.className =
-                    "feedback-item-name";
-
-                name.textContent =
-                    `✨ ${comment.name || "Anonymous"}`;
-
-
-                const message =
-                    document.createElement("div");
-
-                message.className =
-                    "feedback-item-text";
-
-                message.textContent =
-                    comment.message || "";
-
-
-                const date =
-                    document.createElement("div");
-
-                date.className =
-                    "feedback-item-date";
-
-
-                if (comment.created_at) {
-
-                    date.textContent =
-                        new Date(
-                            comment.created_at
-                        ).toLocaleString();
-
-                }
-
-
-                item.appendChild(name);
-                item.appendChild(message);
-
-                if (comment.created_at) {
-                    item.appendChild(date);
-                }
-
-                feedbackList.appendChild(item);
-
-            });
-
-        }
-
-        catch (error) {
-
-            console.error(
-                "Feedback loading error:",
-                error
-            );
-
-            feedbackList.innerHTML = `
-
-                <div class="feedback-message">
-
-                    ⚠️ Unable to load feedback right now.
-
-                    <br><br>
-
-                    Please refresh the page and try again.
-
-                </div>
-
-            `;
-
-        }
-
-    }
-
-
-    /* =========================================================
-       SUBMIT FEEDBACK TO SUPABASE
-    ========================================================= */
-
-    feedbackForm.addEventListener(
-        "submit",
-        async (event) => {
-
-            event.preventDefault();
-
-            const name =
-                feedbackName.value.trim();
-
-            const message =
-                feedbackMessage.value.trim();
-
-
-            if (!name || !message) {
-
-                alert(
-                    "Please complete both fields."
-                );
-
-                return;
-
-            }
-
-
-            const submitButton =
-                feedbackForm.querySelector(
-                    "button[type='submit']"
-                );
-
-
-            submitButton.disabled = true;
-
-            submitButton.textContent =
-                "Sending...";
-
-
-            try {
-
-                const response =
-                    await fetch(
-
-                        SUPABASE_URL +
-                        "/rest/v1/Feedback",
-
-                        {
-                            method: "POST",
-
-                            headers: {
-
-                                "apikey":
-                                    SUPABASE_KEY,
-
-                                "Authorization":
-                                    "Bearer " +
-                                    SUPABASE_KEY,
-
-                                "Content-Type":
-                                    "application/json",
-
-                                "Prefer":
-                                    "return=representation"
-
-                            },
-
-                            body:
-                                JSON.stringify({
-                                    name: name,
-                                    message: message
-                                })
-
-                        }
-
-                    );
-
-
-                if (!response.ok) {
-
-                    const errorText =
-                        await response.text();
-
-                    throw new Error(
-                        errorText
-                    );
-
-                }
-
-
-                feedbackForm.reset();
-
-
-                alert(
-                    "Thank you for your feedback! ✨"
-                );
-
-
-                /*
-                 * Immediately reload the public
-                 * feedback list from Supabase.
-                 */
-
-                await loadFeedback();
-
-
-            }
-
-            catch (error) {
-
-                console.error(
-                    "Feedback submission error:",
-                    error
-                );
-
-
-                alert(
-                    "Sorry, your feedback could not be submitted. " +
-                    "Please try again."
-                );
-
-            }
-
-            finally {
-
-                submitButton.disabled =
-                    false;
-
-                submitButton.textContent =
-                    "💛 Submit Feedback";
-
-            }
-
-        }
-    );
-
-
-    /* =========================================================
-       INITIAL FEEDBACK LOAD
-    ========================================================= */
-
-    loadFeedback();
-
+const music=document.getElementById('music'),musicBtn=document.getElementById('musicBtn');
+musicBtn.addEventListener('click',async()=>{if(music.paused){try{await music.play();musicBtn.textContent='❚❚ PAUSE MUSIC'}catch(e){alert('Please make sure AHOF_-_Butterfly_(mp3.pm).mp3 is in the same folder as this HTML file.')}}else{music.pause();musicBtn.textContent='▶ PLAY MUSIC'}});
+const nameInput=document.getElementById('gbName'),msgInput=document.getElementById('gbMsg'),list=document.getElementById('gbList');
+function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
+function renderGuestbook(){const items=JSON.parse(localStorage.getItem('ahofRetroGuestbook')||'[]');list.innerHTML=items.length?'':'<div class="tiny" style="margin-top:8px">no entries yet... be the first ♥</div>';items.slice(-8).reverse().forEach(x=>list.insertAdjacentHTML('beforeend',`<div class="guestbook-entry"><b>${esc(x.name)}</b><br>${esc(x.msg)}<div class="tiny">${esc(x.date)}</div></div>`))}
+document.getElementById('gbSend').addEventListener('click',()=>{const name=nameInput.value.trim(),msg=msgInput.value.trim();if(!name||!msg)return;const items=JSON.parse(localStorage.getItem('ahofRetroGuestbook')||'[]');items.push({name,msg,date:new Date().toLocaleString()});localStorage.setItem('ahofRetroGuestbook',JSON.stringify(items));nameInput.value='';msgInput.value='';renderGuestbook()});renderGuestbook();
+
+const SUPABASE_URL='https://oayeqcemcyfwrtjpfavc.supabase.co';
+const SUPABASE_KEY='sb_publishable_xv9K0th6XbPNgZ2c8Zan6Q_EZZ7ebZ5';
+const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+const feedbackStatus=document.getElementById('feedbackStatus'),feedbackList=document.getElementById('feedbackList'),chatStatus=document.getElementById('chatStatus'),chatList=document.getElementById('chatList');
+function sbHeaders(){return {'apikey':SUPABASE_KEY,'Authorization':'Bearer '+SUPABASE_KEY,'Content-Type':'application/json','Prefer':'return=representation'}}
+async function loadFeedback(){try{const r=await fetch(`${SUPABASE_URL}/rest/v1/Feedback?select=*&order=created_at.desc&limit=6`,{headers:sbHeaders()});if(!r.ok)throw 0;const rows=await r.json();feedbackList.innerHTML=rows.length?'':'<div class="tiny" style="margin-top:6px">no feedback yet ♥</div>';rows.forEach(x=>{const name=x.name||x.Name||'Anonymous',msg=x.message||x.Message||x.feedback||x.Feedback||x.comment||'',date=x.created_at||x.createdAt||'';feedbackList.insertAdjacentHTML('beforeend',`<div class="guestbook-entry"><b>${esc(name)}</b><br>${esc(msg)}<div class="tiny">${date?esc(new Date(date).toLocaleString()):''}</div></div>`)})}catch(e){feedbackStatus.textContent='Feedback is temporarily unavailable.'}}
+document.getElementById('feedbackSend').addEventListener('click',async()=>{const name=document.getElementById('feedbackName').value.trim(),msg=document.getElementById('feedbackMsg').value.trim();if(!name||!msg){feedbackStatus.textContent='Please enter your name and feedback.';return}feedbackStatus.textContent='sending...';try{const r=await fetch(`${SUPABASE_URL}/rest/v1/Feedback`,{method:'POST',headers:sbHeaders(),body:JSON.stringify({name:name,message:msg})});if(!r.ok)throw 0;document.getElementById('feedbackName').value='';document.getElementById('feedbackMsg').value='';feedbackStatus.textContent='Thank you! ♥';loadFeedback()}catch(e){feedbackStatus.textContent='Could not send feedback. Please try again.'}});
+async function loadChat(){try{const r=await fetch(`${SUPABASE_URL}/rest/v1/LiveChat?select=*&order=created_at.desc&limit=50`,{headers:sbHeaders()});if(!r.ok)throw 0;const rows=(await r.json()).reverse();chatList.innerHTML=rows.length?'':'<div class="tiny">no messages yet... start the chat ♥</div>';rows.forEach(x=>{const name=x.name||x.Name||'Anonymous',msg=x.message||x.Message||x.chat||x.Chat||'',date=x.created_at||x.createdAt||'';chatList.insertAdjacentHTML('beforeend',`<div class="chat-entry" data-chat-id="${esc(String(x.id||''))}"><b>${esc(name)}</b>: ${esc(msg)}<div class="chat-time">${date?esc(new Date(date).toLocaleString()):''}</div></div>`)});chatList.scrollTop=chatList.scrollHeight}catch(e){chatStatus.textContent='Live chat is temporarily unavailable.'}}
+document.getElementById('chatSend').addEventListener('click',async()=>{const name=document.getElementById('chatName').value.trim(),msg=document.getElementById('chatMsg').value.trim();if(!name||!msg){chatStatus.textContent='Please enter your name and message.';return}chatStatus.textContent='sending...';try{const r=await fetch(`${SUPABASE_URL}/rest/v1/LiveChat`,{method:'POST',headers:sbHeaders(),body:JSON.stringify({name:name,message:msg})});if(!r.ok)throw 0;document.getElementById('chatMsg').value='';chatStatus.textContent='sent ♥';loadChat()}catch(e){chatStatus.textContent='Could not send chat. Please try again.'}});
+loadFeedback();loadChat();
+supabaseClient.channel('ahof-live-chat-room').on('postgres_changes',{event:'INSERT',schema:'public',table:'LiveChat'},payload=>{const x=payload.new||{},name=x.name||'Anonymous',msg=x.message||'',date=x.created_at||'';if(!msg)return;const empty=chatList.querySelector('.tiny');if(empty)chatList.innerHTML='';if(x.id&&chatList.querySelector(`[data-chat-id="${String(x.id)}"]`))return;chatList.insertAdjacentHTML('beforeend',`<div class="chat-entry" data-chat-id="${esc(String(x.id||''))}"><b>${esc(name)}</b>: ${esc(msg)}<div class="chat-time">${date?esc(new Date(date).toLocaleString()):''}</div></div>`);chatList.scrollTop=chatList.scrollHeight}).subscribe();
+setInterval(loadChat,15000);setInterval(loadFeedback,15000);
+function sparkle(){const s=document.createElement('span');s.className='spark';s.textContent=['✦','✧','♡','★'][Math.floor(Math.random()*4)];s.style.left=Math.random()*100+'vw';s.style.top=Math.random()*100+'vh';s.style.fontSize=(8+Math.random()*10)+'px';document.body.appendChild(s);setTimeout(()=>s.remove(),1200)}setInterval(sparkle,850);
 </script>
-
 </body>
-
 </html>
